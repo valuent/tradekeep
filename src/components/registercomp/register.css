@@ -12,7 +12,7 @@
           backdrop-filter: blur(5px);
 }
 .register-container .passmatch {
-  font-family: inter;
+  font-family: "inter";
 }
 .register-container .exit {
   width: 50px;
@@ -50,7 +50,7 @@
   width: 800px;
 }
 .register-container .reg-head h1 {
-  font-family: inter;
+  font-family: "inter";
   color: #f1f1f1;
   text-align: center;
 }
