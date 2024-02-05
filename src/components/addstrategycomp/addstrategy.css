@@ -45,13 +45,13 @@
   flex-direction: column;
   text-align: center;
 }
-.addStratContainer .confirmDelete .message span {
+.addStratContainer .confirmDelete .message .warning {
   font-size: 22px;
   color: #ff9e9e;
   font-weight: bold;
   padding-bottom: 10px;
 }
-.addStratContainer .confirmDelete .message strat {
+.addStratContainer .confirmDelete .message .strat {
   color: #b7ff9e;
 }
 .addStratContainer .confirmDelete .buttonsConfirm {

@@ -41,13 +41,13 @@
       justify-content: center;
       flex-direction: column;
       text-align: center;
-      span {
+      .warning {
         font-size: 22px;
         color: $site-red;
         font-weight: bold;
         padding-bottom: 10px;
       }
-      strat {
+      .strat {
         color: $site-green;
       }
     }
