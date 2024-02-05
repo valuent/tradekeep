@@ -21,10 +21,15 @@
   background: #555;
 }
 
+@font-face {
+  font-family: inter;
+  src: url(../assets/Inter.ttf);
+}
 body {
   background-color: #1b1b1b;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   height: 300vh;
+  font-family: inter;
 }/*# sourceMappingURL=app.css.map */
