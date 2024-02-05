@@ -1,0 +1,170 @@
+@import "../../utils/variables";
+
+.addStratContainer {
+  position: absolute;
+  transition: 0.1s ease-in-out;
+  top: 100%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: #1b1b1b6e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+  .confirmDelete {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: fit-content;
+    background-color: #333333d6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    font-family: inter;
+    color: white;
+    border: 1px solid $site-red;
+    padding: 25px;
+    border-radius: 10px;
+    .message {
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      span {
+        font-size: 22px;
+        color: $site-red;
+        font-weight: bold;
+        padding-bottom: 10px;
+      }
+      strat {
+        color: $site-green;
+      }
+    }
+    .buttonsConfirm {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      button {
+        border: 0;
+        background-color: $nav-black;
+        padding: 10px;
+        color: $site-white;
+        width: 100px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:nth-child(2) {
+          background-color: $site-red;
+          color: $nav-black;
+        }
+      }
+    }
+  }
+  .exit {
+    width: 50px;
+    height: 50px;
+    background-color: $site-white;
+    top: 25px;
+    right: 25px;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    .line1,
+    .line2 {
+      height: 3px;
+      width: 80%;
+      background-color: $nav-black;
+      position: relative;
+      top: 50%;
+      left: 10%;
+    }
+    .line1 {
+      transform: rotate(45deg);
+      top: 47%;
+    }
+    .line2 {
+      transform: rotate(-45deg);
+      top: 41%;
+    }
+  }
+  .title {
+    font-size: 24px;
+    margin: 20px;
+  }
+  .disclaimer {
+    text-align: center;
+  }
+  .existingStrategies {
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    width: 600px;
+    font-size: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    table {
+      color: white;
+      width: 600px;
+      border: 1px solid $nav-black;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 20px;
+
+      tr {
+        th {
+          border-bottom: 1px solid $nav-black;
+          padding: 5px;
+        }
+        td {
+          border-top: 1px solid $nav-black;
+          padding: 5px;
+          img {
+            width: 25px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+.addStrategyInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  input {
+    margin: 20px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $nav-black;
+    border: 0;
+    font-size: 20px;
+    color: white;
+    border-bottom: 1px solid $site-green;
+  }
+  button {
+    margin: 20px;
+    margin-top: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $nav-black;
+    border: 0;
+    font-size: 20px;
+    border-bottom: 1px solid $site-green;
+    color: white;
+    cursor: pointer;
+  }
+}

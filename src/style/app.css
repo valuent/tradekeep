@@ -1,0 +1,30 @@
+* {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+* ::-webkit-scrollbar {
+  width: 10px;
+}
+* ::-webkit-scrollbar-track {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: #555;
+}
+* ::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  background-color: #1b1b1b;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 300vh;
+}/*# sourceMappingURL=app.css.map */

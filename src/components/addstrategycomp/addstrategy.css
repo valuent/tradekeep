@@ -1,0 +1,169 @@
+.addStratContainer {
+  position: absolute;
+  transition: 0.1s ease-in-out;
+  top: 100%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(27, 27, 27, 0.431372549);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+}
+.addStratContainer .confirmDelete {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: rgba(51, 51, 51, 0.8392156863);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+  border: 1px solid #ff9e9e;
+  padding: 25px;
+  border-radius: 10px;
+}
+.addStratContainer .confirmDelete .message {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.addStratContainer .confirmDelete .message span {
+  font-size: 22px;
+  color: #ff9e9e;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.addStratContainer .confirmDelete .message strat {
+  color: #b7ff9e;
+}
+.addStratContainer .confirmDelete .buttonsConfirm {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.addStratContainer .confirmDelete .buttonsConfirm button {
+  border: 0;
+  background-color: #262626;
+  padding: 10px;
+  color: #f1f1f1;
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addStratContainer .confirmDelete .buttonsConfirm button:nth-child(2) {
+  background-color: #ff9e9e;
+  color: #262626;
+}
+.addStratContainer .exit {
+  width: 50px;
+  height: 50px;
+  background-color: #f1f1f1;
+  top: 25px;
+  right: 25px;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.addStratContainer .exit .line1,
+.addStratContainer .exit .line2 {
+  height: 3px;
+  width: 80%;
+  background-color: #262626;
+  position: relative;
+  top: 50%;
+  left: 10%;
+}
+.addStratContainer .exit .line1 {
+  transform: rotate(45deg);
+  top: 47%;
+}
+.addStratContainer .exit .line2 {
+  transform: rotate(-45deg);
+  top: 41%;
+}
+.addStratContainer .title {
+  font-size: 24px;
+  margin: 20px;
+}
+.addStratContainer .disclaimer {
+  text-align: center;
+}
+.addStratContainer .existingStrategies {
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  width: 600px;
+  font-size: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.addStratContainer .existingStrategies table {
+  color: white;
+  width: 600px;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+.addStratContainer .existingStrategies table tr th {
+  border-bottom: 1px solid #262626;
+  padding: 5px;
+}
+.addStratContainer .existingStrategies table tr td {
+  border-top: 1px solid #262626;
+  padding: 5px;
+}
+.addStratContainer .existingStrategies table tr td img {
+  width: 25px;
+  cursor: pointer;
+}
+
+.addStrategyInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.addStrategyInputs input {
+  margin: 20px;
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  color: white;
+  border-bottom: 1px solid #b7ff9e;
+}
+.addStrategyInputs button {
+  margin: 20px;
+  margin-top: 0;
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  border-bottom: 1px solid #b7ff9e;
+  color: white;
+  cursor: pointer;
+}/*# sourceMappingURL=addstrategy.css.map */

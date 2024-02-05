@@ -1,0 +1,95 @@
+@import "../../utils/variables";
+.profileInvisibleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 100%;
+  transition: 0.1s ease-in-out;
+}
+.profileContainer {
+  width: 500px;
+  height: 400px;
+  margin-bottom: 10%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.41);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #1b1b1bbe;
+  backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+  overflow: hidden;
+  .exit {
+    width: 35px;
+    height: 35px;
+    background-color: $site-white;
+    top: 25px;
+    right: 25px;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    .line1,
+    .line2 {
+      height: 3px;
+      width: 80%;
+      background-color: $nav-black;
+      position: relative;
+      top: 50%;
+      left: 10%;
+    }
+    .line1 {
+      transform: rotate(45deg);
+      top: 47%;
+    }
+    .line2 {
+      transform: rotate(-45deg);
+      top: 39%;
+    }
+  }
+  .profileIconLetter {
+    color: black;
+    font-size: 36px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $site-white;
+  }
+  .profileEmail {
+    margin-top: 20px;
+    font-size: 22px;
+  }
+  .subscriptionData {
+    display: flex;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 40px;
+    justify-content: space-evenly;
+  }
+  .signOutBtn {
+    margin-top: 40px;
+    font-size: 20px;
+    background-color: $nav-black;
+    padding: 15px;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    border-bottom: 1px solid $site-red;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s ease-in-out;
+      border-bottom: 1px solid $site-green;
+    }
+  }
+}

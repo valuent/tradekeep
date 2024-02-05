@@ -1,0 +1,88 @@
+.login-container {
+  transition: 0.1s ease-in-out;
+  top: 100%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(27, 27, 27, 0.431372549);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+.login-container .logError {
+  font-family: inter;
+}
+.login-container .exit {
+  width: 50px;
+  height: 50px;
+  background-color: #f1f1f1;
+  top: 25px;
+  right: 25px;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.login-container .exit .line1,
+.login-container .exit .line2 {
+  height: 3px;
+  width: 80%;
+  background-color: #262626;
+  position: relative;
+  top: 50%;
+  left: 10%;
+}
+.login-container .exit .line1 {
+  transform: rotate(45deg);
+  top: 47%;
+}
+.login-container .exit .line2 {
+  transform: rotate(-45deg);
+  top: 41%;
+}
+.login-container .log-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  width: 800px;
+}
+.login-container .log-head h1 {
+  font-family: inter;
+  color: #f1f1f1;
+  text-align: center;
+}
+.login-container .log-head input {
+  padding: 15px;
+  font-size: 20px;
+  border: 0;
+  border-bottom: 1px solid #ff9e9e;
+  border-radius: 5px;
+  width: 50%;
+  background-color: #262626;
+  transition: 0.2s ease-in-out;
+  color: #f1f1f1;
+}
+.login-container .log-head input:focus {
+  outline: none;
+  transition: 0.2s ease-in-out;
+  border-bottom: 1px solid #b7ff9e;
+}
+.login-container .log-head button {
+  width: 25%;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  background-color: #262626;
+  color: #f1f1f1;
+  transition: 0.1s ease-in-out;
+  border-bottom: 1px solid #b7ff9e;
+}
+.login-container .log-head button:hover {
+  border-bottom: 1px solid #ff9e9e;
+}/*# sourceMappingURL=login.css.map */
