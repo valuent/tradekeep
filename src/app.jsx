@@ -21,6 +21,7 @@ import Profile from "./components/profilecomp/Profile";
 import SendTestData from "./service/SendTestData";
 import TopBar from "./components/topbarcomp/TopBar";
 import AddStrategy from "./components/addstrategycomp/AddStrategy";
+import AddTrade from "./components/addtradecomp/AddTrade";
 // import CheckDocSize from "./service/CheckDocSize";
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
         <Navbar />
         <TopBar />
         <SendTestData />
+        <AddTrade />
       </DataContext.Provider>
 
       <button onClick={checkSizeAndAddDoc}>ClickHere</button>
