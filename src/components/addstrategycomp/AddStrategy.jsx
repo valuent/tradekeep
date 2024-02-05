@@ -69,32 +69,35 @@ function AddStrategy() {
 
           {userStrategyTags?.map((strategy, i) => {
             return (
-              <tr>
+              <tr key={i + 1}>
                 <td>{i + 1}</td>
                 <td>{strategy}</td>
                 <td>
                   <img src={trash} onClick={openConfirmPop} />
                 </td>
-                <div className="confirmDelete" id="confirmpop">
-                  <div className="message">
-                    <span>Warning</span>
-                    <msg>
-                      Deleting <strat>{strategy}</strat> will delete all the
-                      trade data related to <strat>{strategy}</strat>
-                    </msg>
+                <td>
+                  <div className="confirmDelete" id="confirmpop">
+                    <div className="message">
+                      <span className="warning">Warning</span>
+                      <span className="msg">
+                        Deleting <span className="strat">{strategy}</span> will
+                        delete all the trade data related to{" "}
+                        <span className="strat">{strategy}</span>
+                      </span>
+                    </div>
+                    <div className="buttonsConfirm">
+                      <button onClick={closeConfirmPop}>Cancel</button>
+                      <button
+                        onClick={() => {
+                          removeStratInArray(strategy);
+                          closeConfirmPop();
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  <div className="buttonsConfirm">
-                    <button onClick={closeConfirmPop}>Cancel</button>
-                    <button
-                      onClick={() => {
-                        removeStratInArray(strategy);
-                        closeConfirmPop();
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
+                </td>
               </tr>
             );
           })}
