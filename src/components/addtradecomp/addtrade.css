@@ -1,1 +1,105 @@
-/*# sourceMappingURL=addtrade.css.map */
+.addTradeContainer {
+  position: absolute;
+  transition: 0.1s ease-in-out;
+  top: 0%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(27, 27, 27, 0.431372549);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+}
+.addTradeContainer .title {
+  font-size: 24px;
+  margin: 20px;
+}
+.addTradeContainer .dateSelection {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.addTradeContainer .dateSelection label {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.addTradeContainer .dateSelection input {
+  color: white;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
+}
+.addTradeContainer .dateSelection input:focus {
+  outline: 0;
+  border-bottom: 1px solid #ff9e9e;
+}
+.addTradeContainer .strategySelection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  width: 50%;
+}
+.addTradeContainer .strategySelection label {
+  margin-bottom: 5px;
+}
+.addTradeContainer .strategySelection .stratname {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.addTradeContainer .strategySelection .pnl {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.addTradeContainer .strategySelection input {
+  color: white;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
+}
+.addTradeContainer .strategySelection select {
+  color: white;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
+}
+.addTradeContainer .addMoreInfoBtn {
+  width: 80%;
+}
+.addTradeContainer .addMoreInfoBtn .infoAddingButton {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.addTradeContainer .addMoreInfoBtn img {
+  width: 40px;
+}
+.addTradeContainer .addMoreInfoBtn span {
+  padding: 10px;
+}/*# sourceMappingURL=addtrade.css.map */

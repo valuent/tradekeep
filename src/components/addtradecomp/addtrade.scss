@@ -1,1 +1,108 @@
 @import "../../utils/variables";
+
+.addTradeContainer {
+  position: absolute;
+  transition: 0.1s ease-in-out;
+  top: 0%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-color: #1b1b1b6e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+  .title {
+    font-size: 24px;
+    margin: 20px;
+  }
+  .dateSelection {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    label {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    input {
+      color: white;
+      background-color: $nav-black;
+      border: 0;
+      font-size: 20px;
+      padding: 7px;
+      border-radius: 5px;
+      border-bottom: 1px solid $site-green;
+      transition: 0.1s ease-in-out;
+      color-scheme: dark;
+      &:focus {
+        outline: 0;
+        border-bottom: 1px solid $site-red;
+      }
+    }
+  }
+  .strategySelection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+    width: 50%;
+    label {
+      margin-bottom: 5px;
+    }
+    .stratname {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .pnl {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      color: white;
+      background-color: $nav-black;
+      border: 0;
+      font-size: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      border-bottom: 1px solid $site-green;
+      transition: 0.1s ease-in-out;
+      color-scheme: dark;
+    }
+
+    select {
+      color: white;
+      background-color: $nav-black;
+      border: 0;
+      font-size: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      border-bottom: 1px solid $site-green;
+      transition: 0.1s ease-in-out;
+      color-scheme: dark;
+    }
+  }
+  .addMoreInfoBtn {
+    width: 80%;
+    .infoAddingButton {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    img {
+      width: 40px;
+    }
+    span {
+      padding: 10px;
+    }
+  }
+}
