@@ -50,8 +50,7 @@
     align-items: center;
     flex-wrap: wrap;
     margin-top: 20px;
-
-    width: 50%;
+    width: 40%;
     label {
       margin-bottom: 5px;
     }
@@ -75,6 +74,10 @@
       border-bottom: 1px solid $site-green;
       transition: 0.1s ease-in-out;
       color-scheme: dark;
+      &:focus {
+        outline: 0;
+        border-bottom: 1px solid $site-red;
+      }
     }
 
     select {
@@ -87,10 +90,14 @@
       border-bottom: 1px solid $site-green;
       transition: 0.1s ease-in-out;
       color-scheme: dark;
+      &:focus {
+        outline: 0;
+        border-bottom: 1px solid $site-red;
+      }
     }
   }
   .addMoreInfoBtn {
-    width: 80%;
+    width: 90%;
     .infoAddingButton {
       display: flex;
       justify-content: right;

@@ -15,10 +15,6 @@ function AddStrategy() {
     setUserStrategyTags(userData?.strategytags);
   }, [userData]);
 
-  useEffect(() => {
-    console.log(userStrategyTags);
-  }, [userStrategyTags]);
-
   const addStratInArray = async () => {
     if (userData.strategytags.length <= 9) {
       await updateDoc(doc(db, "users", userAuthState?.email), {

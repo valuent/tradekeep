@@ -17,7 +17,6 @@ function TopBar() {
         dataEntryCount = dataEntryCount + Object.keys(allData[docname]).length;
       }
       setDataEntryCounter(dataEntryCount);
-      console.log("data", dataEntryCount);
     };
     countEntries();
   }, [allData]);

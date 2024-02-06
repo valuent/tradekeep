@@ -50,7 +50,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  width: 50%;
+  width: 40%;
 }
 .addTradeContainer .strategySelection label {
   margin-bottom: 5px;
@@ -76,6 +76,10 @@
   transition: 0.1s ease-in-out;
   color-scheme: dark;
 }
+.addTradeContainer .strategySelection input:focus {
+  outline: 0;
+  border-bottom: 1px solid #ff9e9e;
+}
 .addTradeContainer .strategySelection select {
   color: white;
   background-color: #262626;
@@ -87,8 +91,12 @@
   transition: 0.1s ease-in-out;
   color-scheme: dark;
 }
+.addTradeContainer .strategySelection select:focus {
+  outline: 0;
+  border-bottom: 1px solid #ff9e9e;
+}
 .addTradeContainer .addMoreInfoBtn {
-  width: 80%;
+  width: 90%;
 }
 .addTradeContainer .addMoreInfoBtn .infoAddingButton {
   display: flex;

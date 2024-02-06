@@ -18,6 +18,8 @@ function AddTrade() {
 
   const [tradeDataObject, setTradeDataObject] = useState({});
   const [tradeEntryCount, setTradeEntryCount] = useState();
+  const [tradeEntryDate, setTradeEntryDate] = useState();
+  const [strategyTag, setStrategyTag] = useState();
 
   useEffect(() => {
     const countEntries = () => {
@@ -33,7 +35,9 @@ function AddTrade() {
     countEntries();
   }, [allData]);
 
-  const setStrategy = () => {};
+  const setCurrentStrategy = (strategyData) => {
+    setStrategyTag(JSON.parse(strategyData));
+  };
   return (
     <div className="addTradeContainer">
       <div className="title">Add Trade</div>
@@ -41,25 +45,45 @@ function AddTrade() {
       {/* Date Selection */}
       <div className="dateSelection">
         <label htmlFor="date">Select date</label>
-        <input type="date" name="dateDropDown" id="dateDropDown" />
+        <input
+          type="date"
+          name="dateDropDown"
+          id="dateDropDown"
+          onChange={(e) => {
+            setTradeEntryDate(e.target.value);
+          }}
+        />
       </div>
 
       {/* StrategySelection */}
 
       <div className="strategySelection">
         <div className="stratname">
-          <label htmlFor="">Select strategy to enter trade data</label>
-          <select name="strategyName" id="">
-            <option disabled selected>
+          <label htmlFor="selectStrategy">
+            Select strategy to enter trade data
+          </label>
+          <select
+            name="strategyName"
+            id="strategyselection"
+            onChange={(e) => {
+              setCurrentStrategy(e.target.value);
+            }}
+          >
+            <option disabled selected value="0">
               --Select Strategy--
             </option>
-            <option value="Straddle">Straddle</option>
-            <option value="Strangle">Strangle</option>
+            {userData?.strategytags.map((strategy, i) => {
+              let jsonStringStrategy = JSON.stringify({
+                strategyName: strategy,
+                strategyNumber: i,
+              });
+              return <option value={jsonStringStrategy}>{strategy}</option>;
+            })}
           </select>
         </div>
 
         <div className="pnl">
-          <label htmlFor="">Enter PnL for "Strategy"</label>
+          <label htmlFor="AddPNL">Enter PnL for "Strategy"</label>
           <input
             type="number"
             name=""
