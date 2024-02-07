@@ -20,7 +20,7 @@
   margin: 20px;
 }
 .addTradeContainer .dateSelection {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -49,38 +49,48 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 20px;
   width: 40%;
-}
-.addTradeContainer .strategySelection label {
-  margin-bottom: 5px;
-}
-.addTradeContainer .strategySelection .stratname {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.addTradeContainer .strategySelection .pnl {
-  text-align: center;
-  display: flex;
   flex-direction: column;
 }
-.addTradeContainer .strategySelection input {
-  color: white;
+.addTradeContainer .strategySelection .title {
+  font-size: 22px;
+}
+.addTradeContainer .strategySelection .strategyBtn {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+.addTradeContainer .strategySelection .strategyBtn button {
+  padding: 10px;
+  font-size: 20px;
   background-color: #262626;
   border: 0;
-  font-size: 20px;
-  padding: 5px;
-  border-radius: 5px;
   border-bottom: 1px solid #b7ff9e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
   transition: 0.1s ease-in-out;
-  color-scheme: dark;
 }
-.addTradeContainer .strategySelection input:focus {
-  outline: 0;
+.addTradeContainer .strategySelection .strategyBtn .active {
+  transform: scale(1.2);
   border-bottom: 1px solid #ff9e9e;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
 }
-.addTradeContainer .strategySelection select {
+.addTradeContainer .strategySelection .strategyBtn .inactive {
+  transform: scale(1);
+}
+.addTradeContainer .pnl {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.addTradeContainer .pnl label {
+  margin-bottom: 10px;
+}
+.addTradeContainer .pnl input {
   color: white;
   background-color: #262626;
   border: 0;
@@ -91,16 +101,14 @@
   transition: 0.1s ease-in-out;
   color-scheme: dark;
 }
-.addTradeContainer .strategySelection select:focus {
+.addTradeContainer .pnl input:focus {
   outline: 0;
   border-bottom: 1px solid #ff9e9e;
 }
 .addTradeContainer .addMoreInfoBtn {
   width: 90%;
-}
-.addTradeContainer .addMoreInfoBtn .infoAddingButton {
   display: flex;
-  justify-content: right;
+  justify-content: left;
   align-items: center;
   margin-top: 20px;
   cursor: pointer;

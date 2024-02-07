@@ -20,7 +20,7 @@
     margin: 20px;
   }
   .dateSelection {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -49,38 +49,48 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 20px;
+
     width: 40%;
-    label {
-      margin-bottom: 5px;
+    flex-direction: column;
+    .title {
+      font-size: 22px;
     }
-    .stratname {
+    .strategyBtn {
       display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-    .pnl {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-    }
-    input {
-      color: white;
-      background-color: $nav-black;
-      border: 0;
-      font-size: 20px;
-      padding: 5px;
-      border-radius: 5px;
-      border-bottom: 1px solid $site-green;
-      transition: 0.1s ease-in-out;
-      color-scheme: dark;
-      &:focus {
-        outline: 0;
+      justify-content: space-evenly;
+      width: 80%;
+      button {
+        padding: 10px;
+        font-size: 20px;
+        background-color: $nav-black;
+        border: 0;
+        border-bottom: 1px solid $site-green;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+      }
+      .active {
+        transform: scale(1.2);
         border-bottom: 1px solid $site-red;
+        box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+        -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+        -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+      }
+      .inactive {
+        transform: scale(1);
       }
     }
-
-    select {
+  }
+  .pnl {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    label {
+      margin-bottom: 10px;
+    }
+    input {
       color: white;
       background-color: $nav-black;
       border: 0;
@@ -98,13 +108,12 @@
   }
   .addMoreInfoBtn {
     width: 90%;
-    .infoAddingButton {
-      display: flex;
-      justify-content: right;
-      align-items: center;
-      margin-top: 20px;
-      cursor: pointer;
-    }
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+
     img {
       width: 40px;
     }

@@ -35,9 +35,20 @@ function AddTrade() {
     countEntries();
   }, [allData]);
 
-  const setCurrentStrategy = (strategyData) => {
+  const currentStrategy = (strategyData) => {
     setStrategyTag(JSON.parse(strategyData));
   };
+
+  useEffect(() => {
+    console.log(strategyTag);
+  }, [strategyTag]);
+
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleClick = (index) => {
+    setActiveButton(index);
+  };
+
   return (
     <div className="addTradeContainer">
       <div className="title">Add Trade</div>
@@ -58,46 +69,43 @@ function AddTrade() {
       {/* StrategySelection */}
 
       <div className="strategySelection">
-        <div className="stratname">
-          <label htmlFor="selectStrategy">
-            Select strategy to enter trade data
-          </label>
-          <select
-            name="strategyName"
-            id="strategyselection"
-            onChange={(e) => {
-              setCurrentStrategy(e.target.value);
-            }}
-          >
-            <option disabled selected value="0">
-              --Select Strategy--
-            </option>
-            {userData?.strategytags.map((strategy, i) => {
-              let jsonStringStrategy = JSON.stringify({
-                strategyName: strategy,
-                strategyNumber: i,
-              });
-              return <option value={jsonStringStrategy}>{strategy}</option>;
-            })}
-          </select>
-        </div>
-
-        <div className="pnl">
-          <label htmlFor="AddPNL">Enter PnL for "Strategy"</label>
-          <input
-            type="number"
-            name=""
-            id=""
-            step={0.05}
-            placeholder="Profit/Loss"
-          />
+        <div className="title">Select strategy to enter trade data</div>
+        <div className="strategyBtn">
+          {userData?.strategytags.map((strategy, i) => {
+            let jsonStringStrategy = JSON.stringify({
+              strategyName: strategy,
+              strategyNumber: i,
+            });
+            return (
+              <button
+                key={i}
+                className={i === activeButton ? "active" : "inactive"}
+                onClick={(e) => {
+                  currentStrategy(jsonStringStrategy);
+                  handleClick(i);
+                }}
+              >
+                {strategy}
+              </button>
+            );
+          })}
         </div>
       </div>
+
+      <div className="pnl">
+        <label htmlFor="AddPNL">Enter PnL for "Strategy"</label>
+        <input
+          type="number"
+          name=""
+          id=""
+          step={0.05}
+          placeholder="Profit/Loss"
+        />
+      </div>
+
       <div className="addMoreInfoBtn">
-        <div className="infoAddingButton">
-          <img src={addInfosvg} />
-          <span>Add Trade-wise Data</span>
-        </div>
+        <span>Add Trade-wise Data</span>
+        <img src={addInfosvg} />
       </div>
     </div>
   );
