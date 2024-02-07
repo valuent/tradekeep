@@ -28,7 +28,7 @@ function SendTestData() {
     // console.log("count", entryCount);
 
     let tradeDataTemp = {
-      11: {
+      119: {
         date: siteDate.c.day + "-" + siteDate.c.month + "-" + siteDate.c.year,
         noOfStrats: 3,
         [s1]: {

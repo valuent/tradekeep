@@ -49,7 +49,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  width: 40%;
+  width: 100%;
   flex-direction: column;
 }
 .addTradeContainer .strategySelection .title {
@@ -58,7 +58,8 @@
 .addTradeContainer .strategySelection .strategyBtn {
   display: flex;
   justify-content: space-evenly;
-  width: 80%;
+  width: 70%;
+  flex-wrap: wrap;
 }
 .addTradeContainer .strategySelection .strategyBtn button {
   padding: 10px;
@@ -70,6 +71,8 @@
   border-radius: 5px;
   cursor: pointer;
   transition: 0.1s ease-in-out;
+  width: 200px;
+  margin: 20px;
 }
 .addTradeContainer .strategySelection .strategyBtn .active {
   transform: scale(1.2);
@@ -94,8 +97,8 @@
   color: white;
   background-color: #262626;
   border: 0;
-  font-size: 20px;
-  padding: 5px;
+  font-size: 22px;
+  padding: 10px;
   border-radius: 5px;
   border-bottom: 1px solid #b7ff9e;
   transition: 0.1s ease-in-out;
@@ -106,7 +109,8 @@
   border-bottom: 1px solid #ff9e9e;
 }
 .addTradeContainer .addMoreInfoBtn {
-  width: 90%;
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -116,6 +120,20 @@
 .addTradeContainer .addMoreInfoBtn img {
   width: 40px;
 }
+.addTradeContainer .addMoreInfoBtn .removeTradewise {
+  transform: rotate(45deg);
+}
 .addTradeContainer .addMoreInfoBtn span {
   padding: 10px;
+}
+.addTradeContainer .numOfTrades input {
+  color: white;
+  background-color: #262626;
+  border: 0;
+  font-size: 22px;
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
 }/*# sourceMappingURL=addtrade.css.map */

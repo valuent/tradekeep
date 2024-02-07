@@ -3,7 +3,7 @@
 .addTradeContainer {
   position: absolute;
   transition: 0.1s ease-in-out;
-  top: 0%;
+  top: 00%;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -50,7 +50,7 @@
     align-items: center;
     flex-wrap: wrap;
 
-    width: 40%;
+    width: 100%;
     flex-direction: column;
     .title {
       font-size: 22px;
@@ -58,7 +58,8 @@
     .strategyBtn {
       display: flex;
       justify-content: space-evenly;
-      width: 80%;
+      width: 70%;
+      flex-wrap: wrap;
       button {
         padding: 10px;
         font-size: 20px;
@@ -69,6 +70,8 @@
         border-radius: 5px;
         cursor: pointer;
         transition: 0.1s ease-in-out;
+        width: 200px;
+        margin: 20px;
       }
       .active {
         transform: scale(1.2);
@@ -94,8 +97,8 @@
       color: white;
       background-color: $nav-black;
       border: 0;
-      font-size: 20px;
-      padding: 5px;
+      font-size: 22px;
+      padding: 10px;
       border-radius: 5px;
       border-bottom: 1px solid $site-green;
       transition: 0.1s ease-in-out;
@@ -107,7 +110,7 @@
     }
   }
   .addMoreInfoBtn {
-    width: 90%;
+    width: fit-content;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -117,8 +120,25 @@
     img {
       width: 40px;
     }
+    .removeTradewise {
+      transform: rotate(45deg);
+    }
     span {
       padding: 10px;
+    }
+  }
+
+  .numOfTrades {
+    input {
+      color: white;
+      background-color: $nav-black;
+      border: 0;
+      font-size: 22px;
+      padding: 10px;
+      border-radius: 5px;
+      border-bottom: 1px solid $site-green;
+      transition: 0.1s ease-in-out;
+      color-scheme: dark;
     }
   }
 }
