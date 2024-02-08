@@ -29,7 +29,7 @@ body {
   background-color: #1b1b1b;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 300vh;
   font-family: inter;
 }/*# sourceMappingURL=app.css.map */

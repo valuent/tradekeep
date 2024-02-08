@@ -2,18 +2,20 @@
   position: absolute;
   transition: 0.1s ease-in-out;
   top: 0%;
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   position: fixed;
   background-color: rgba(27, 27, 27, 0.431372549);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   font-family: inter;
   color: white;
+  overflow-y: scroll;
+  text-align: center;
 }
 .addTradeContainer .title {
   font-size: 24px;
@@ -126,14 +128,99 @@
 .addTradeContainer .addMoreInfoBtn span {
   padding: 10px;
 }
+.addTradeContainer .numOfTrades {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.addTradeContainer .numOfTrades .title {
+  font-size: 20px;
+  margin: 20px;
+}
 .addTradeContainer .numOfTrades input {
   color: white;
+  width: 150px;
   background-color: #262626;
   border: 0;
-  font-size: 22px;
+  font-size: 20px;
   padding: 10px;
   border-radius: 5px;
   border-bottom: 1px solid #b7ff9e;
   transition: 0.1s ease-in-out;
   color-scheme: dark;
+}
+.addTradeContainer .tradeSelectionMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  flex-wrap: wrap;
+}
+.addTradeContainer .tradeSelectionMenu button {
+  padding: 10px;
+  font-size: 20px;
+  background-color: #262626;
+  border: 0;
+  border-bottom: 1px solid #b7ff9e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  width: 150px;
+  margin: 20px;
+}
+.addTradeContainer .tradeSelectionMenu .active {
+  transform: scale(1.2);
+  border-bottom: 1px solid #ff9e9e;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+}
+.addTradeContainer .tradeSelectionMenu .inactive {
+  transform: scale(1);
+}
+.addTradeContainer .tradeWiseInputs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 400px;
+  flex-direction: column;
+}
+.addTradeContainer .tradeWiseInputs input {
+  color: white;
+  width: 100%;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
+  margin: 20px;
+  margin-top: 0;
+}
+.addTradeContainer .tradeWiseInputs .tradeTypeBtn,
+.addTradeContainer .tradeWiseInputs .directionSelectBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.addTradeContainer .tradeWiseInputs .tradeTypeBtn button,
+.addTradeContainer .tradeWiseInputs .directionSelectBtn button {
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #262626;
+  border: 0;
+  border-bottom: 1px solid #b7ff9e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  min-width: 170px;
 }/*# sourceMappingURL=addtrade.css.map */

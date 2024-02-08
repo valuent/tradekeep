@@ -34,7 +34,7 @@ function SendTestData() {
         [s1]: {
           pnl: 6000,
           detail: {
-            noOfTrade: 3,
+            noOfTrade: 5,
             trade1: {
               scripName: "Nifty",
               direction: "Long",

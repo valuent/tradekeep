@@ -21,10 +21,11 @@ function AddTrade() {
 
   const [tradeEntryCount, setTradeEntryCount] = useState();
 
-  const [tradeEntryDate, setTradeEntryDate] = useState();
   const [strategyTag, setStrategyTag] = useState();
-  const [isTradewise, setIsTradewise] = useState(false);
+  const [isTradewise, setIsTradewise] = useState(0);
   const [numberOfTrades, setNumberOfTrades] = useState();
+  const [activeTradeButton, setActiveTradeButton] = useState();
+  const [activeTradeTag, setActiveTradeTag] = useState();
 
   let strategyPnL = {};
 
@@ -48,21 +49,16 @@ function AddTrade() {
     countEntries();
   }, [allData]);
 
-  const currentStrategyPnl = (strategyName, pnl, noOfTrades) => {
-    strategyPnL[strategyName] = pnl;
-    console.log(strategyPnL);
-  };
-
-  const currentStrategy = (strategyData) => {
-    setStrategyTag(JSON.parse(strategyData));
-  };
-
   useEffect(() => {
     console.log(tradeDataObject[tradeEntryCount]);
-  }, [tradeDataObject]);
+  }, [tradeDataObject, numberOfTrades]);
 
   const handleClick = (index) => {
     setActiveButton(index);
+  };
+
+  const handleTradeBtnClick = (index) => {
+    setActiveTradeButton(index);
   };
 
   useEffect(() => {
@@ -72,10 +68,26 @@ function AddTrade() {
     }
   }, [strategyTag]);
 
+  useEffect(() => {
+    if (document.getElementById("tradeScripName")) {
+      if (
+        !tradeDataObject[tradeEntryCount][strategyTag]["detail"][
+          activeTradeTag
+        ]["scripName"]
+      ) {
+        document.getElementById("tradeScripName").value = "";
+      } else {
+        document.getElementById("tradeScripName").value =
+          tradeDataObject[tradeEntryCount][strategyTag]["detail"][
+            activeTradeTag
+          ]["scripName"];
+      }
+    }
+  }, [activeTradeTag]);
+
   return (
     <div className="addTradeContainer">
       <div className="title">Add Trade</div>
-
       {/* Date Selection */}
       <div className="dateSelection">
         <label htmlFor="date">Select date</label>
@@ -89,7 +101,6 @@ function AddTrade() {
           }}
         />
       </div>
-
       {/* StrategySelection */}
       {tradeDataObject[tradeEntryCount] && (
         <div className="strategySelection">
@@ -130,66 +141,150 @@ function AddTrade() {
             step={0.05}
             placeholder="Profit/Loss"
             onChange={(e) => {
-              let pnlObject = { pnl: parseFloat(e.target.value) };
+              let pnlObject = parseFloat(e.target.value);
               let updatedObject = Object.assign({}, tradeDataObject);
-              updatedObject[tradeEntryCount][strategyTag] = pnlObject;
+              updatedObject[tradeEntryCount][strategyTag]["pnl"] = pnlObject;
               setTradeDataObject(updatedObject);
             }}
           />
         </div>
       )}
-      {strategyTag && !isTradewise && (
+      {strategyTag && isTradewise == 0 && (
         <div
           className="addMoreInfoBtn"
           onClick={() => {
-            setIsTradewise(true);
+            setIsTradewise(1);
           }}
         >
           <span>Add Trade-wise Data</span>
           <img src={addInfosvg} />
         </div>
       )}
-      {strategyTag && isTradewise && (
+      {strategyTag && isTradewise == 1 && (
         <div
           className="addMoreInfoBtn"
           onClick={() => {
-            setIsTradewise(false);
+            setIsTradewise(0);
+            // let updatedObject = Object.assign({}, tradeDataObject);
+            // delete updatedObject[tradeEntryCount][strategyTag]["detail"];
+            // setTradeDataObject(updatedObject);
           }}
         >
           <span>Remove Trade-wise Data</span>
           <img src={addInfosvg} className="removeTradewise" />
         </div>
       )}
-      {isTradewise && (
-        <div div className="numOfTrades">
+      {isTradewise == 1 && (
+        <div className="numOfTrades">
+          <div className="title">Input number of trades for {strategyTag}</div>
           <input
             type="number"
-            name=""
-            id=""
-            min={1}
-            max={10}
             step={1}
             pattern="[0-9]*"
-            placeholder="Profit/Loss"
+            placeholder="No. of trades"
             onInput={(e) => {
               if (e.target.value > 20) {
                 e.target.value = 20;
               }
             }}
             onChange={(e) => {
-              let pnlObject = { noOfTrade: parseInt(e.target.value) };
+              let noOfTradeObject = { noOfTrade: parseInt(e.target.value) };
               let updatedObject = Object.assign({}, tradeDataObject);
-              updatedObject[tradeEntryCount][strategyTag]["detail"] = pnlObject;
+              updatedObject[tradeEntryCount][strategyTag]["detail"] =
+                noOfTradeObject;
               setTradeDataObject(updatedObject);
-              setNumberOfTrades(parseInt(e.target.value));
+              setNumberOfTrades(
+                Array.from(
+                  { length: parseInt(e.target.value) },
+                  (_, index) => +index + 1
+                )
+              );
             }}
           />
         </div>
       )}
-
-      <div className="tradeWiseInputs">
-        {/* <div className="title">Trade 1</div> */}
+      <div className="tradeSelectionMenu">
+        {/* <button className={i === activeTradeButton ? "active" : "inactive"}>
+          Trade 1
+        </button> */}
+        {numberOfTrades?.map((i) => {
+          let tradeName = "trade_" + i;
+          return (
+            <button
+              className={i === activeTradeButton ? "active" : "inactive"}
+              onClick={(e) => {
+                let tradeObject = {};
+                let updatedObject = Object.assign({}, tradeDataObject);
+                if (
+                  updatedObject[tradeEntryCount][strategyTag]["detail"][
+                    tradeName
+                  ]
+                ) {
+                  setActiveTradeTag(tradeName);
+                } else {
+                  updatedObject[tradeEntryCount][strategyTag]["detail"][
+                    tradeName
+                  ] = tradeObject;
+                  setTradeDataObject(updatedObject);
+                  setActiveTradeTag(tradeName);
+                }
+                handleTradeBtnClick(i);
+              }}
+            >
+              Trade {i}
+            </button>
+          );
+        })}
       </div>
+      {activeTradeTag && (
+        <div className="tradeWiseInputs">
+          <div className="title">Trade 1</div>
+          <input
+            type="text"
+            pattern="[^' ']+"
+            name=""
+            id="tradeScripName"
+            placeholder="Scrip Name"
+            style={{ textTransform: "uppercase" }}
+            onClick={(e) => {
+              const input = document.getElementById("tradeScripName");
+              input.addEventListener("keypress", function (e) {
+                if (e.key === " ") {
+                  e.preventDefault();
+                }
+              });
+            }}
+            onChange={(e) => {
+              let tradeInfoData = e.target.value.toUpperCase();
+              let updatedObject = Object.assign({}, tradeDataObject);
+              updatedObject[tradeEntryCount][strategyTag]["detail"][
+                activeTradeTag
+              ]["scripName"] = tradeInfoData;
+              setTradeDataObject(updatedObject);
+            }}
+          />
+          <div className="tradeTypeBtn">
+            <button className="tradeType">Directional</button>
+            <button className="tradeType">Non-Directional</button>
+          </div>
+          <div className="directionSelectBtn">
+            <button className="direction">Long</button>
+            <button className="direction">Short</button>
+          </div>
+
+          <input
+            type="number"
+            name=""
+            id="tradePnlInput"
+            step={0.05}
+            placeholder="Profit/Loss"
+          />
+        </div>
+      )}
+      {/* <div className="finalButtons">
+        <button className="Confirm">Confirm</button>
+        <button className="Save"></button>
+      </div> */}
     </div>
   );
 }
