@@ -10,6 +10,7 @@ function AddStrategy() {
     useContext(DataContext);
   const [userStrategyTags, setUserStrategyTags] = useState([]);
   const [newStrategyName, setNewStrategyName] = useState();
+  const [strategyToDelete, setStrategyToDelete] = useState();
 
   useEffect(() => {
     setUserStrategyTags(userData?.strategytags);
@@ -32,18 +33,44 @@ function AddStrategy() {
 
   const closeAddStrategy = () => {
     document.getElementById("addStratContainer").style.top = "100%";
-  };
-
-  const openConfirmPop = () => {
-    document.getElementById("confirmpop").style.top = "35%";
+    setStrategyToDelete(null);
   };
 
   const closeConfirmPop = () => {
-    document.getElementById("confirmpop").style.top = "100%";
+    removeStratInArray(strategyToDelete);
+    setStrategyToDelete(null);
   };
 
   return (
     <div className="addStratContainer" id="addStratContainer">
+      {strategyToDelete && (
+        <div className="confirmDelete" id="confirmpop">
+          <div className="message">
+            <span className="warning">Warning</span>
+            <span className="msg">
+              Deleting <span className="strat">{strategyToDelete}</span> will
+              delete all the trade data related to{" "}
+              <span className="strat">{strategyToDelete}</span>
+            </span>
+          </div>
+          <div className="buttonsConfirm">
+            <button
+              onClick={() => {
+                closeConfirmPop(strategyToDelete);
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                closeConfirmPop();
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
       <div className="exit" onClick={closeAddStrategy}>
         <div className="line1"></div>
         <div className="line2"></div>
@@ -69,30 +96,12 @@ function AddStrategy() {
                 <td>{i + 1}</td>
                 <td>{strategy}</td>
                 <td>
-                  <img src={trash} onClick={openConfirmPop} />
-                </td>
-                <td>
-                  <div className="confirmDelete" id="confirmpop">
-                    <div className="message">
-                      <span className="warning">Warning</span>
-                      <span className="msg">
-                        Deleting <span className="strat">{strategy}</span> will
-                        delete all the trade data related to{" "}
-                        <span className="strat">{strategy}</span>
-                      </span>
-                    </div>
-                    <div className="buttonsConfirm">
-                      <button onClick={closeConfirmPop}>Cancel</button>
-                      <button
-                        onClick={() => {
-                          removeStratInArray(strategy);
-                          closeConfirmPop();
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+                  <img
+                    src={trash}
+                    onClick={() => {
+                      setStrategyToDelete(strategy);
+                    }}
+                  />
                 </td>
               </tr>
             );

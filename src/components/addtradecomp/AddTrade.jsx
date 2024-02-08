@@ -65,6 +65,13 @@ function AddTrade() {
     setActiveButton(index);
   };
 
+  useEffect(() => {
+    if (document.getElementById("pnlInput")) {
+      document.getElementById("pnlInput").value =
+        tradeDataObject[tradeEntryCount][strategyTag]["pnl"];
+    }
+  }, [strategyTag]);
+
   return (
     <div className="addTradeContainer">
       <div className="title">Add Trade</div>
@@ -96,9 +103,13 @@ function AddTrade() {
                   onClick={(e) => {
                     let strategyObject = {};
                     let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategy] = strategyObject;
-                    setTradeDataObject(updatedObject);
-                    setStrategyTag(strategy);
+                    if (updatedObject[tradeEntryCount][strategy]) {
+                      setStrategyTag(strategy);
+                    } else {
+                      updatedObject[tradeEntryCount][strategy] = strategyObject;
+                      setTradeDataObject(updatedObject);
+                      setStrategyTag(strategy);
+                    }
                     handleClick(i);
                   }}
                 >
@@ -115,7 +126,7 @@ function AddTrade() {
           <input
             type="number"
             name=""
-            id=""
+            id="pnlInput"
             step={0.05}
             placeholder="Profit/Loss"
             onChange={(e) => {
@@ -161,12 +172,12 @@ function AddTrade() {
             pattern="[0-9]*"
             placeholder="Profit/Loss"
             onInput={(e) => {
-              if (e.target.value > 5) {
-                e.target.value = 5;
+              if (e.target.value > 20) {
+                e.target.value = 20;
               }
             }}
             onChange={(e) => {
-              let pnlObject = { noOfTrade: e.target.value };
+              let pnlObject = { noOfTrade: parseInt(e.target.value) };
               let updatedObject = Object.assign({}, tradeDataObject);
               updatedObject[tradeEntryCount][strategyTag]["detail"] = pnlObject;
               setTradeDataObject(updatedObject);
