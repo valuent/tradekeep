@@ -469,6 +469,18 @@ function AddTrade() {
 
     setStart(false);
     setTradeDataObject({});
+
+    setActiveButton("");
+    setActiveTradeButton("");
+    setTempToRefreshPnl("");
+    setTradeDataObject("");
+    setTradeEntryCount("");
+    setStrategyTag("");
+    setIsTradewise("");
+    setNumberOfTrades("");
+    setActiveTradeTag("");
+    setTradeType("");
+    setTradeDirection("");
   };
   return (
     <div className="addTradeContainer" id="addTradeContainer">
