@@ -18,7 +18,6 @@ import Navbar from "./components/navbarcomp/Navbar";
 import Register from "./components/registercomp/Register";
 import Login from "./components/logincomp/Login";
 import Profile from "./components/profilecomp/Profile";
-import SendTestData from "./service/SendTestData";
 import TopBar from "./components/topbarcomp/TopBar";
 import AddStrategy from "./components/addstrategycomp/AddStrategy";
 import AddTrade from "./components/addtradecomp/AddTrade";
@@ -69,28 +68,6 @@ function App() {
     }
   }, [userData]);
 
-  const checkSizeAndAddDoc = async () => {
-    if (userData && allData) {
-      let writableDoc = userData?.tradeWritableDoc;
-      let currentSetDocSize = JSON.stringify(allData[writableDoc]).length;
-      let numberOfDocs = Object.keys(allData).length;
-      let nextDocNumber = numberOfDocs + 1;
-      let nextDocName = "tradeDoc_" + nextDocNumber;
-      if (currentSetDocSize > 500) {
-        const userTradeDataAddDoc = await setDoc(
-          doc(db, "users", userAuthState?.email, "userTradeData", nextDocName),
-          {}
-        );
-
-        await updateDoc(doc(db, "users", userAuthState?.email), {
-          tradeWritableDoc: nextDocName,
-        });
-        console.log("wrote");
-      }
-      console.log(currentSetDocSize, nextDocNumber, allData.tradeDoc_1);
-    }
-  };
-
   return (
     <div>
       <DataContext.Provider
@@ -102,11 +79,9 @@ function App() {
         <Login />
         <Navbar />
         <TopBar />
-        <SendTestData />
+
         <AddTrade />
       </DataContext.Provider>
-
-      <button onClick={checkSizeAndAddDoc}>ClickHere</button>
     </div>
   );
 }

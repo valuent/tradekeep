@@ -25,6 +25,9 @@ function TopBar() {
     document.getElementById("addStratContainer").style.top = "0%";
   };
 
+  const openAddTrade = () => {
+    document.getElementById("addTradeContainer").style.top = "0%";
+  };
   return (
     <div className="topbarContainer">
       <div className="left">
@@ -50,7 +53,9 @@ function TopBar() {
         <div className="addStrategy" onClick={openAddStrategy}>
           Add Strategy
         </div>
-        <div className="addTrade">Add Trade</div>
+        <div className="addTrade" onClick={openAddTrade}>
+          Add Trade
+        </div>
       </div>
     </div>
   );

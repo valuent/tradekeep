@@ -1,7 +1,7 @@
 .addTradeContainer {
   position: absolute;
   transition: 0.1s ease-in-out;
-  top: 0%;
+  top: 100%;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -16,6 +16,91 @@
   color: white;
   overflow-y: scroll;
   text-align: center;
+}
+.addTradeContainer .confirmSave {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: rgba(51, 51, 51, 0.8392156863);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  font-family: inter;
+  color: white;
+  border: 1px solid #ff9e9e;
+  padding: 25px;
+  border-radius: 10px;
+  z-index: 7;
+}
+.addTradeContainer .confirmSave .message {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.addTradeContainer .confirmSave .message .warning {
+  font-size: 22px;
+  color: #ff9e9e;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.addTradeContainer .confirmSave .message .strat {
+  color: #b7ff9e;
+}
+.addTradeContainer .confirmSave .buttonsConfirm {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.addTradeContainer .confirmSave .buttonsConfirm button {
+  border: 0;
+  background-color: #262626;
+  padding: 10px;
+  color: #f1f1f1;
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addTradeContainer .confirmSave .buttonsConfirm button:nth-child(2) {
+  background-color: #b7ff9e;
+  color: #262626;
+}
+.addTradeContainer .exit {
+  width: 50px;
+  height: 50px;
+  background-color: #f1f1f1;
+  top: 25px;
+  right: 25px;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.addTradeContainer .exit .line1,
+.addTradeContainer .exit .line2 {
+  height: 3px;
+  width: 80%;
+  background-color: #262626;
+  position: relative;
+  top: 50%;
+  left: 10%;
+}
+.addTradeContainer .exit .line1 {
+  transform: rotate(45deg);
+  top: 47%;
+}
+.addTradeContainer .exit .line2 {
+  transform: rotate(-45deg);
+  top: 41%;
 }
 .addTradeContainer .title {
   font-size: 24px;
@@ -182,15 +267,25 @@
 }
 .addTradeContainer .tradeWiseInputs {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  margin-right: 25px;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 400px;
-  flex-direction: column;
+}
+.addTradeContainer .tradeWiseInputs .active {
+  transform: scale(1.15);
+  border-bottom: 1px solid #ff9e9e;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.35);
+}
+.addTradeContainer .tradeWiseInputs .inactive {
+  transform: scale(1);
 }
 .addTradeContainer .tradeWiseInputs input {
   color: white;
-  width: 100%;
   background-color: #262626;
   border: 0;
   font-size: 20px;
@@ -201,6 +296,33 @@
   color-scheme: dark;
   margin: 20px;
   margin-top: 0;
+  width: 100%;
+}
+.addTradeContainer .tradeWiseInputs .tradeDataInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.addTradeContainer .tradeWiseInputs .tradeDataInput .title {
+  margin: 0;
+  font-size: 18px;
+}
+.addTradeContainer .tradeWiseInputs .tradeDataInput input {
+  color: white;
+  background-color: #262626;
+  border: 0;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid #b7ff9e;
+  transition: 0.1s ease-in-out;
+  color-scheme: dark;
+  margin-left: 0;
+  margin-top: 0;
+  width: 100%;
 }
 .addTradeContainer .tradeWiseInputs .tradeTypeBtn,
 .addTradeContainer .tradeWiseInputs .directionSelectBtn {
@@ -223,4 +345,22 @@
   cursor: pointer;
   transition: 0.1s ease-in-out;
   min-width: 170px;
+}
+.addTradeContainer .finalButton button {
+  margin-bottom: 20px;
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #262626;
+  border: 0;
+  border-bottom: 1px solid #b7ff9e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  min-width: 250px;
+}
+.addTradeContainer .finalButton button:hover {
+  transform: scale(1.2);
+  border-bottom: 1px solid #ff9e9e;
 }/*# sourceMappingURL=addtrade.css.map */
