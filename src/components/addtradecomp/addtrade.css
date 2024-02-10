@@ -17,6 +17,23 @@
   overflow-y: scroll;
   text-align: center;
 }
+.addTradeContainer .startTrade {
+  padding: 10px;
+  font-size: 20px;
+  background-color: #262626;
+  border: 0;
+  border-bottom: 1px solid #b7ff9e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  width: 150px;
+  margin: 20px;
+}
+.addTradeContainer .startTrade:hover {
+  transform: scale(1.2);
+  border-bottom: 1px solid #ff9e9e;
+}
 .addTradeContainer .confirmSave {
   position: absolute;
   top: 45%;

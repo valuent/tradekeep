@@ -17,6 +17,23 @@
   color: white;
   overflow-y: scroll;
   text-align: center;
+  .startTrade {
+    padding: 10px;
+    font-size: 20px;
+    background-color: $nav-black;
+    border: 0;
+    border-bottom: 1px solid $site-green;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    width: 150px;
+    margin: 20px;
+    &:hover {
+      transform: scale(1.2);
+      border-bottom: 1px solid $site-red;
+    }
+  }
   .confirmSave {
     position: absolute;
     top: 45%;

@@ -16,6 +16,8 @@ import addInfosvg from "../../assets/addIcon.svg";
 function AddTrade() {
   const { userData, userAuthState, siteDate, allData } =
     useContext(DataContext);
+  const [start, setStart] = useState(false);
+
   const [activeButton, setActiveButton] = useState(null);
   const [activeTradeButton, setActiveTradeButton] = useState(null);
   const [tempToRefreshPnl, setTempToRefreshPnl] = useState(null);
@@ -33,23 +35,23 @@ function AddTrade() {
 
   const [saveTradePop, setSaveTradePop] = useState(false);
 
-  // cont[(arrayForPnl, setArrayForPnl)] = useState();
-  useEffect(() => {
-    const countEntries = () => {
-      if (userData && allData) {
-        let writableDoc = userData?.tradeWritableDoc;
-        let lastDoc = allData[writableDoc];
-        if (lastDoc && writableDoc) {
-          let lastWrittenUid = Object.keys(lastDoc)?.at(-1);
+  const countEntries = () => {
+    if (userData && allData) {
+      let writableDoc = userData?.tradeWritableDoc;
+      let lastDoc = allData[writableDoc];
+      if (lastDoc && writableDoc) {
+        let lastWrittenUid = Object.keys(lastDoc)?.at(-1);
+        if (!lastWrittenUid) {
+          setTradeEntryCount(1);
+        } else {
           setTradeEntryCount(parseInt(lastWrittenUid) + 1);
         }
       }
-    };
-    countEntries();
-  }, [allData, userData]);
+    }
+  };
 
   useEffect(() => {
-    console.log(tradeDataObject[tradeEntryCount]);
+    console.log(tradeDataObject);
     // console.log(numberOfTrades);
     // console.log(strategyTag);
     // console.log(activeTradeTag);
@@ -438,7 +440,6 @@ function AddTrade() {
     ).then(() => {
       setSaveTradePop(false);
       closeAddTrade();
-      setTradeDataObject({});
     });
   };
 
@@ -465,19 +466,9 @@ function AddTrade() {
 
   const closeAddTrade = () => {
     document.getElementById("addTradeContainer").style.top = "100%";
-    document.getElementById("dateDropDown").value = null;
-    setTradeDataObject({});
 
-    setActiveButton(null);
-    setActiveTradeButton(null);
-    setTempToRefreshPnl(null);
-    setTradeDataObject(null);
-    setStrategyTag(null);
-    setIsTradewise(null);
-    setNumberOfTrades(null);
-    setActiveTradeTag(null);
-    setTradeType(null);
-    setTradeDirection(null);
+    setStart(false);
+    setTradeDataObject({});
   };
   return (
     <div className="addTradeContainer" id="addTradeContainer">
@@ -518,20 +509,42 @@ function AddTrade() {
       </div>
       <div className="title">Add Trade</div>
       {/* Date Selection */}
-      <div className="dateSelection">
-        <label htmlFor="date">Select date</label>
-        <input
-          type="date"
-          name="dateDropDown"
-          id="dateDropDown"
-          onChange={(e) => {
-            let updatedObject = {
-              [tradeEntryCount]: { date: e.target.value },
-            };
-            setTradeDataObject(updatedObject);
-          }}
-        />
-      </div>
+      {!tradeDataObject[tradeEntryCount] && (
+        <div className="topbtn">
+          <div className="startButtonTitle">Double click on Start</div>
+          <button
+            className="startTrade"
+            onClick={() => {
+              countEntries();
+              setStart(true);
+              if (tradeEntryCount) {
+                let updatedObject = {
+                  [tradeEntryCount]: {},
+                };
+                setTradeDataObject(updatedObject);
+              }
+            }}
+          >
+            Start
+          </button>
+        </div>
+      )}
+      {start && tradeDataObject[tradeEntryCount] && (
+        <div className="dateSelection">
+          <label htmlFor="date">Select date</label>
+          <input
+            type="date"
+            name="dateDropDown"
+            id="dateDropDown"
+            onChange={(e) => {
+              let date = e.target.value;
+              let updatedObject = Object.assign({}, tradeDataObject);
+              updatedObject[tradeEntryCount]["date"] = date;
+              setTradeDataObject(updatedObject);
+            }}
+          />
+        </div>
+      )}
       {/* StrategySelection */}
       {tradeDataObject[tradeEntryCount] && (
         <div className="strategySelection">
