@@ -558,35 +558,38 @@ function AddTrade() {
         </div>
       )}
       {/* StrategySelection */}
-      {tradeDataObject[tradeEntryCount] && (
-        <div className="strategySelection">
-          <div className="title">Select strategy to enter trade data</div>
-          <div className="strategyBtn">
-            {userData?.strategytags.map((strategy, i) => {
-              return (
-                <button
-                  key={i}
-                  className={i === activeButton ? "active" : "inactive"}
-                  onClick={(e) => {
-                    let strategyObject = {};
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    if (updatedObject[tradeEntryCount][strategy]) {
-                      setStrategyTag(strategy);
-                    } else {
-                      updatedObject[tradeEntryCount][strategy] = strategyObject;
-                      setTradeDataObject(updatedObject);
-                      setStrategyTag(strategy);
-                    }
-                    handleClick(i);
-                  }}
-                >
-                  {strategy}
-                </button>
-              );
-            })}
+      {tradeDataObject[tradeEntryCount] &&
+        tradeDataObject[tradeEntryCount]?.["date"] &&
+        tradeDataObject[tradeEntryCount]?.["date"] != "" && (
+          <div className="strategySelection">
+            <div className="title">Select strategy to enter trade data</div>
+            <div className="strategyBtn">
+              {userData?.strategytags.map((strategy, i) => {
+                return (
+                  <button
+                    key={i}
+                    className={i === activeButton ? "active" : "inactive"}
+                    onClick={(e) => {
+                      let strategyObject = {};
+                      let updatedObject = Object.assign({}, tradeDataObject);
+                      if (updatedObject[tradeEntryCount][strategy]) {
+                        setStrategyTag(strategy);
+                      } else {
+                        updatedObject[tradeEntryCount][strategy] =
+                          strategyObject;
+                        setTradeDataObject(updatedObject);
+                        setStrategyTag(strategy);
+                      }
+                      handleClick(i);
+                    }}
+                  >
+                    {strategy}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        )}
       {tradeDataObject[tradeEntryCount] && strategyTag && (
         <div className="pnl">
           <label htmlFor="AddPNL">Enter PnL for {strategyTag}</label>
