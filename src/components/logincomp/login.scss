@@ -45,6 +45,9 @@
     align-items: center;
     height: 400px;
     width: 800px;
+    background-color: $nav-black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
     .forgotPass {
       cursor: pointer;
       transition: 0.1s ease-in-out;
@@ -74,20 +77,20 @@
       }
     }
     button {
-      width: 25%;
-      text-align: center;
-      padding: 15px;
-      font-size: 20px;
-      border-radius: 5px;
-      border: 0;
+      background-color: $site-white;
+      color: $body-black;
+      padding: 8.5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
       cursor: pointer;
-      background-color: $nav-black;
-      color: $site-white;
-      transition: 0.1s ease-in-out;
-      border-bottom: 1px solid $site-green;
-      &:hover {
-        border-bottom: 1px solid $site-red;
-      }
+      transition: 0.2s ease-in-out;
+      font-size: 20px;
+      border: 0;
     }
   }
 }

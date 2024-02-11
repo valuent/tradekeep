@@ -5,7 +5,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../../utils/config";
-import "./login.css";
+// import "./login.css";
 
 function Login() {
   const [errLog, setErrLog] = useState("");

@@ -45,6 +45,8 @@
   align-items: center;
   height: 400px;
   width: 800px;
+  background-color: #262626;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .login-container .log-head .forgotPass {
   cursor: pointer;
@@ -75,18 +77,18 @@
   border-bottom: 1px solid #b7ff9e;
 }
 .login-container .log-head button {
-  width: 25%;
-  text-align: center;
-  padding: 15px;
-  font-size: 20px;
-  border-radius: 5px;
-  border: 0;
+  background-color: #f1f1f1;
+  color: #1b1b1b;
+  padding: 8.5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
   cursor: pointer;
-  background-color: #262626;
-  color: #f1f1f1;
-  transition: 0.1s ease-in-out;
-  border-bottom: 1px solid #b7ff9e;
-}
-.login-container .log-head button:hover {
-  border-bottom: 1px solid #ff9e9e;
+  transition: 0.2s ease-in-out;
+  font-size: 20px;
+  border: 0;
 }/*# sourceMappingURL=login.css.map */
