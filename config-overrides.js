@@ -1,4 +1,6 @@
 const webpack = require("webpack");
+// const { override, addPostcssPlugins } = require("customize-cra");
+// module.exports = override(addPostcssPlugins([require("tailwindcss")]));
 
 module.exports = function override(config) {
   const fallback = config.resolve.fallback || {};
@@ -29,11 +31,4 @@ module.exports = function override(config) {
     },
   });
   return config;
-};
-
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
 };
