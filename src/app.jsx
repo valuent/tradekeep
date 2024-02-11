@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { db } from "./utils/config";
 import {
   doc,
@@ -77,11 +78,12 @@ function App() {
       <DataContext.Provider
         value={{ userData, userAuthState, siteDate, allData }}
       >
-        <AddStrategy />
+        <Navbar />
         <Profile />
+
+        <AddStrategy />
         <Register />
         <Login />
-        <Navbar />
         <TopBar />
 
         <AddTrade />
