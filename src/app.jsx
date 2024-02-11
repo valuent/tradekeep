@@ -88,7 +88,6 @@ function App() {
 
         <AddTrade />
       </DataContext.Provider>
-      <button className="text-green-600">Hello</button>
     </div>
   );
 }
