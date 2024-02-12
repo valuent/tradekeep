@@ -39,37 +39,7 @@ function Navbar() {
   };
 
   return (
-    // <div className="nav">
-    //   <div className="logo">
-    //     <img src={logo} />
-    //   </div>
-    //   <div className="profile">
-    //     {visible && (
-    //       <div className="login" id="userStatebtn" onClick={openLogin}>
-    //         Login
-    //       </div>
-    //     )}
-    //     {visible && (
-    //       <div className="login reg" id="userStatebtn" onClick={openRegister}>
-    //         Sign Up
-    //       </div>
-    //     )}
-    //     {!visible && (
-    //       <div className="profile-icon">
-    //         <div className="userEmail " onClick={openProfile}>
-    //           {userEmail?.email.charAt(0).toUpperCase() +
-    //             userEmail?.email.slice(1, 8)}
-    //         </div>
-
-    //         <div className="icon" onClick={openProfile}>
-    //           {userEmail?.email?.charAt(0).toUpperCase()}
-    //         </div>
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
-
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-300 drop-shadow-md">
       <div class="flex-1">
         <a href="/" class="btn btn-ghost text-xl">
           TradeKeep
@@ -92,7 +62,7 @@ function Navbar() {
         </svg>
         <input
           type="checkbox"
-          value="pastel"
+          value="cupcake"
           className="theme-controller toggle"
         />
         <svg

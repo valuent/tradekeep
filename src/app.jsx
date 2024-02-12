@@ -14,7 +14,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/config";
 import { DateTime } from "luxon";
 
-import "./style/app.css";
 import Navbar from "./components/navbarcomp/Navbar";
 import Register from "./components/registercomp/Register";
 import Login from "./components/logincomp/Login";

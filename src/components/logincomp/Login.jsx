@@ -43,20 +43,9 @@ function Login() {
 
   return (
     <div
-      className="fixed top-full h-full w-full transition-all duration-100 ease-in-out"
+      className="fixed top-full z-50 h-full w-full transition-all duration-100 ease-in-out"
       id="logcontainer"
     >
-      {/* <div
-        className="exit"
-        onClick={() => {
-          closeLogin();
-          setPassResetMessage("");
-          setPassResetFlag(false);
-        }}
-      >
-        <div className="line1"></div>
-        <div className="line2"></div>
-      </div> */}
       <button
         className="hover btn btn-square absolute right-5 top-5 z-10 border-primary bg-primary hover:border-red-500 hover:bg-red-500 "
         onClick={() => {

@@ -83,7 +83,7 @@ function Register() {
   };
   return (
     <div
-      className="fixed top-full h-full w-full transition-all duration-100 ease-in-out"
+      className="fixed top-full z-50 h-full w-full transition-all duration-100 ease-in-out"
       id="regcontainer"
     >
       <button

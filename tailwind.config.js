@@ -5,9 +5,9 @@ export default {
     extend: {},
   },
 
-  daisyui: {
-    themes: ["dracula", "cupcake"],
-  },
+  // daisyui: {
+  //   themes: ["dracula", "cupcake"],
+  // },
 
   daisyui: {
     themes: [
@@ -17,7 +17,7 @@ export default {
           primary: "#6e6eff",
         },
       },
-      "pastel",
+      "cupcake",
     ],
   },
   plugins: [require("daisyui")],

@@ -32,34 +32,8 @@ function Profile() {
   // const uInfo = userData.userInfo;
 
   return (
-    // <div
-    //   className="profileInvisibleContainer"
-    //   onClick={closeProfile}
-    //   id="profileContainer"
-    // >
-    //   <div className="profileContainer">
-    //     <div className="exit" onClick={closeProfile}>
-    //       <div className="line1"></div>
-    //       <div className="line2"></div>
-    //     </div>
-
-    //     <div className="profileIconLetter">
-    //       {userAuthState?.email?.charAt(0).toUpperCase()}
-    //     </div>
-
-    //     <div className="profileEmail">{userAuthState?.email}</div>
-
-    //     <div className="subscriptionData">
-    //       <div className="type">Plan: {userData?.userInfo?.useType}</div>
-    //       <div className="expiration">{daysTillExpiry} days left</div>
-    //     </div>
-    //     <div className="signOutBtn" onClick={signOutUser}>
-    //       Sign Out
-    //     </div>
-    //   </div>
-    // </div>
     <div
-      className="card card-normal absolute left-0 right-0 top-full m-auto h-fit max-w-2xl bg-base-200 shadow-xl transition-all duration-100 ease-in-out "
+      className="card card-normal absolute left-0 right-0 top-full z-50 m-auto h-fit max-w-2xl bg-base-200 shadow-xl transition-all duration-100 ease-in-out "
       id="profileContainer"
     >
       <div className="card-body items-center text-center">
