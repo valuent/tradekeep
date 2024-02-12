@@ -6,8 +6,6 @@ import { db } from "../../utils/config";
 import { doc, setDoc, addDoc, collection, Timestamp } from "firebase/firestore";
 import { auth } from "../../utils/config";
 
-import "./register.css";
-
 function Register() {
   const [errReg, setErrReg] = useState("");
   const [passMatch, setPassMatch] = useState(false);
@@ -15,10 +13,6 @@ function Register() {
   const [registerPassword, setRegisterPassword] = useState("");
   const { userData, userAuthState, siteDate } = useContext(DataContext);
 
-  // const currentDate = new Date();
-  // const expiry = new Date();
-  // const daysTillExpiry = expiry.getDate() + 30 - currentDate.getDate();
-  // d.getDate();
   var setNowDate = siteDate.c;
   var setExpiryDate = siteDate.plus({ days: 30 }).c;
   const registerUser = async () => {
@@ -48,20 +42,19 @@ function Register() {
       const userRegister = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
-        registerPassword
+        registerPassword,
       );
 
       const userAddDoc = await setDoc(
         doc(db, "users", registerEmail),
-        userData
+        userData,
       );
 
       const userTradeDataAddDoc = await setDoc(
         doc(db, "users", registerEmail, "userTradeData", "tradeDoc_1"),
-        {}
+        {},
       );
-      // var
-      // const userTradesAddDoc = await setDoc(doc(db, "users", registerEmail),
+
       setErrReg("");
     } catch (err) {
       setErrReg(err.message);
@@ -80,67 +73,152 @@ function Register() {
 
     if (passInput1 != passInput2) {
       document.getElementById("passMsg").innerHTML = "Password did not match";
-      document.getElementById("passMsg").style.color = "#FF9E9E";
+
       setPassMatch(false);
     } else {
       document.getElementById("passMsg").innerHTML = "Password Matched!";
-      document.getElementById("passMsg").style.color = "#B7FF9E";
+
       setPassMatch(true);
     }
   };
   return (
-    <div className="register-container" id="regcontainer">
-      <div className="exit" onClick={closeRegister}>
-        <div className="line1"></div>
-        <div className="line2"></div>
-      </div>
-      <div className="reg-head">
-        <h1>Sign Up</h1>
-        <input
-          type="email"
-          name="email"
-          id="emailId"
-          placeholder="E-Mail ID..."
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-
-        <input
-          type="password"
-          name="password"
-          id="pass1"
-          placeholder="Password..."
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-            checkPass();
-          }}
-        />
-        <input
-          type="password"
-          name="confirmpass"
-          id="pass2"
-          placeholder="Comfirm Password..."
-          onChange={checkPass}
-        />
-        <div className="passmatch" id="passMsg"></div>
-        <div
-          className="passmatch"
-          id="firebaseMsg"
-          style={{ color: "#FF9E9E" }}
+    <div
+      className="fixed top-full h-full w-full transition-all duration-100 ease-in-out"
+      id="regcontainer"
+    >
+      <button
+        className="hover btn btn-square absolute right-5 top-5 bg-primary hover:bg-red-500 "
+        onClick={closeRegister}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          {errReg}
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <div className="max- hero min-h-screen bg-base-200 bg-opacity-50">
+        <div className="hero-content flex-col sm:w-4/5 lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Sign Up now!</h1>
+            <p className="py-6">
+              Embark on your trading journey with our user-friendly platform,
+              designed to empower new traders with insightful analytics.
+            </p>
+          </div>
+          <div className="card w-full max-w-sm shrink-0 bg-base-100 shadow-2xl">
+            <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="emailId"
+                  placeholder="E-Mail ID..."
+                  onChange={(event) => {
+                    setRegisterEmail(event.target.value);
+                  }}
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="pass1"
+                  placeholder="Password..."
+                  onChange={(event) => {
+                    setRegisterPassword(event.target.value);
+                    checkPass();
+                  }}
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  name="confirmpass"
+                  id="pass2"
+                  placeholder="Comfirm Password..."
+                  onChange={checkPass}
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              {errReg && (
+                <div
+                  role="alert"
+                  class="alert alert-error cursor-pointer"
+                  onClick={() => {
+                    setErrReg("");
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 shrink-0 stroke-current"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>{errReg}</span>
+                </div>
+              )}
+              {passMatch == true && (
+                <div id="passMsg" className="text-success"></div>
+              )}
+              {passMatch != true && (
+                <div id="passMsg" className="text-error"></div>
+              )}
+              {passMatch == true && (
+                <div className="form-control mt-6">
+                  <button
+                    className="btn btn-primary"
+                    id="signBtn"
+                    onClick={registerUser}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
+              {!passMatch == true && (
+                <div className="form-control mt-6">
+                  <button
+                    className="btn disabled btn-primary"
+                    id="signBtn"
+                    onClick={registerUser}
+                    disabled
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        {passMatch && (
-          <button id="signBtn" onClick={registerUser}>
-            Register
-          </button>
-        )}
-        {!passMatch && (
-          <button id="signBtn" style={{ opacity: "20%" }}>
-            Register
-          </button>
-        )}
       </div>
     </div>
   );

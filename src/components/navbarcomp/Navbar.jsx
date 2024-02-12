@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./navbar.css";
+
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../utils/config";
 import logo from "../../assets/logosvg.svg";
@@ -33,38 +33,116 @@ function Navbar() {
     document.getElementById("logcontainer").style.top = "0%";
   };
   const openProfile = () => {
-    document.getElementById("profileContainer").style.top = "0%";
+    document.getElementById("profileContainer").classList.add("top-1/5");
+    document.getElementById("profileContainer").classList.remove("top-full");
   };
 
   return (
-    <div className="nav">
-      <div className="logo">
-        <img src={logo} />
-      </div>
-      <div className="profile">
-        {visible && (
-          <div className="login" id="userStatebtn" onClick={openLogin}>
-            Login
-          </div>
-        )}
-        {visible && (
-          <div className="login reg" id="userStatebtn" onClick={openRegister}>
-            Sign Up
-          </div>
-        )}
-        {!visible && (
-          <div className="profile-icon">
-            <div className="userEmail" onClick={openProfile}>
-              {userEmail?.email.charAt(0).toUpperCase() +
-                userEmail?.email.slice(1, 8)}
-            </div>
+    // <div className="nav">
+    //   <div className="logo">
+    //     <img src={logo} />
+    //   </div>
+    //   <div className="profile">
+    //     {visible && (
+    //       <div className="login" id="userStatebtn" onClick={openLogin}>
+    //         Login
+    //       </div>
+    //     )}
+    //     {visible && (
+    //       <div className="login reg" id="userStatebtn" onClick={openRegister}>
+    //         Sign Up
+    //       </div>
+    //     )}
+    //     {!visible && (
+    //       <div className="profile-icon">
+    //         <div className="userEmail " onClick={openProfile}>
+    //           {userEmail?.email.charAt(0).toUpperCase() +
+    //             userEmail?.email.slice(1, 8)}
+    //         </div>
 
-            <div className="icon" onClick={openProfile}>
-              {userEmail?.email?.charAt(0).toUpperCase()}
+    //         <div className="icon" onClick={openProfile}>
+    //           {userEmail?.email?.charAt(0).toUpperCase()}
+    //         </div>
+    //       </div>
+    //     )}
+    //   </div>
+    // </div>
+
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+        <a href="/" class="btn btn-ghost text-xl">
+          TradeKeep
+        </a>
+      </div>
+      <label className="mr-8 flex cursor-pointer gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+        </svg>
+        <input
+          type="checkbox"
+          value="cupcake"
+          className="theme-controller toggle"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </label>
+      {!visible && (
+        <div class="flex-none">
+          <div tabindex="0" role="button" class="avatar placeholder">
+            {/* <div className="initialOfUser absolute bottom-0 left-0 right-0 m-auto">
+                
+              </div> */}
+            <div
+              className="w-12 rounded-full bg-neutral text-neutral-content"
+              onClick={openProfile}
+            >
+              <span className="text-2xl">
+                {userEmail?.email?.charAt(0).toUpperCase()}
+              </span>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+      {visible && (
+        <div className="join join-vertical lg:join-horizontal">
+          <button
+            className="btn join-item"
+            id="userStatebtn"
+            onClick={openLogin}
+          >
+            Log In
+          </button>
+          <button
+            className="btn join-item"
+            id="userStatebtn"
+            onClick={openRegister}
+          >
+            Sign Up
+          </button>
+        </div>
+      )}
     </div>
   );
 }

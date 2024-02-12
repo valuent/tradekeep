@@ -50,7 +50,10 @@ function TopBar() {
         </div>
       </div>
       <div className="right">
-        <div className="addStrategy" onClick={openAddStrategy}>
+        <div
+          className="addStrategy bg-red-600 text-gray-50"
+          onClick={openAddStrategy}
+        >
           Add Strategy
         </div>
         <div className="addTrade" onClick={openAddTrade}>
