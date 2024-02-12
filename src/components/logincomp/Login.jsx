@@ -57,7 +57,7 @@ function Login() {
       </div>
       {passResetFlag == false && (
         <div className="log-head">
-          <h1>Log In</h1>
+          <h1 className="text-xl">Log In</h1>
           <input
             type="email"
             name="email"
@@ -75,7 +75,7 @@ function Login() {
             }}
           />
           <div
-            className="forgotPass"
+            className="forgotPass "
             onClick={() => {
               setPassResetFlag(true);
               // setLoginEmail("");
