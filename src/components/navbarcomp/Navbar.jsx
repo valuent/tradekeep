@@ -33,8 +33,9 @@ function Navbar() {
     document.getElementById("logcontainer").style.top = "0%";
   };
   const openProfile = () => {
-    document.getElementById("profileContainer").classList.add("top-1/5");
-    document.getElementById("profileContainer").classList.remove("top-full");
+    // document.getElementById("profileContainer").classList.add("top-32");
+    // document.getElementById("profileContainer").classList.remove("top-full");
+    document.getElementById("profileContainer").style.top = "15%";
   };
 
   return (
@@ -91,7 +92,7 @@ function Navbar() {
         </svg>
         <input
           type="checkbox"
-          value="cupcake"
+          value="pastel"
           className="theme-controller toggle"
         />
         <svg

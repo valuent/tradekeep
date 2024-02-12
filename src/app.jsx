@@ -45,7 +45,7 @@ function App() {
             setUserData(doc.data());
             setSizeCount(true);
             console.log(doc.data());
-          }
+          },
         );
       }
     };
@@ -64,7 +64,7 @@ function App() {
             newData[documentId] = documentData;
           });
           setAllData(newData);
-        }
+        },
       );
     }
   }, [userData]);

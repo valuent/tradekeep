@@ -58,7 +58,7 @@ function Login() {
         <div className="line2"></div>
       </div> */}
       <button
-        className="hover btn btn-square absolute right-5 top-5 bg-primary hover:bg-red-500 "
+        className="hover btn btn-square absolute right-5 top-5 z-10 border-primary bg-primary hover:border-red-500 hover:bg-red-500 "
         onClick={() => {
           closeLogin();
           setPassResetMessage("");
@@ -184,7 +184,7 @@ function Login() {
                 )}
                 <div className="form-control mt-6">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white hover:border-secondary hover:bg-secondary"
                     onClick={() => {
                       loginUser();
                       setPassResetMessage("");
@@ -226,7 +226,7 @@ function Login() {
                 </div>
                 <div className="form-control mt-6">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white hover:border-secondary hover:bg-secondary"
                     onClick={() => {
                       resetPassword();
                       setPassResetFlag(false); //

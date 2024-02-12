@@ -87,7 +87,7 @@ function Register() {
       id="regcontainer"
     >
       <button
-        className="hover btn btn-square absolute right-5 top-5 bg-primary hover:bg-red-500 "
+        className="hover btn btn-square absolute right-5 top-5 z-10 border-primary bg-primary hover:border-red-500 hover:bg-red-500 "
         onClick={closeRegister}
       >
         <svg
@@ -207,7 +207,7 @@ function Register() {
               {!passMatch == true && (
                 <div className="form-control mt-6">
                   <button
-                    className="btn disabled btn-primary"
+                    className="btn disabled btn-primary text-white hover:border-secondary hover:bg-secondary"
                     id="signBtn"
                     onClick={registerUser}
                     disabled
