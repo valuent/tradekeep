@@ -39,7 +39,7 @@ function Navbar() {
   };
 
   return (
-    <div class="navbar bg-base-300 drop-shadow-md">
+    <div class="navbar w-full bg-base-300 drop-shadow-md">
       <div class="flex-1">
         <a href="/" class="btn btn-ghost text-xl">
           TradeKeep

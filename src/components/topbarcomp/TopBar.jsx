@@ -28,8 +28,8 @@ function TopBar() {
     document.getElementById("addTradeContainer").style.top = "0%";
   };
   return (
-    <div className="flex justify-between">
-      <ul className="menu menu-horizontal ml-2 mt-2 rounded-box bg-primary shadow-md">
+    <div className="flex flex-col justify-between sm:flex-row">
+      <ul className="menu menu-horizontal m-2 rounded-box bg-primary shadow-md">
         <li>
           <a className="hover:bg-primary0">
             <svg
@@ -94,16 +94,16 @@ function TopBar() {
           </a>
         </li>
       </ul>
-      <div className="join mr-2 mt-2 drop-shadow-md">
+      <div className="join m-2 mr-2 mt-2 flex w-full justify-center drop-shadow-md sm:w-fit">
         <button
-          className="btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary"
+          className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
           onClick={openAddStrategy}
         >
           Add Strategy
         </button>
 
         <button
-          className=" btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary"
+          className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
           onClick={openAddTrade}
         >
           Add Trade

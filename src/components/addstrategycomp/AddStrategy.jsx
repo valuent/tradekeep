@@ -104,7 +104,7 @@ function AddStrategy() {
             B. Deleting the strategy will delete all the trade data related to
             that strategy
           </div>
-          <div className="w-1/2 overflow-x-auto text-center ">
+          <div className=" w-4/5 overflow-x-auto text-center xl:w-3/5">
             <table className="table text-lg ">
               {/* head */}
               <thead>
