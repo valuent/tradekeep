@@ -35,7 +35,7 @@ function Navbar() {
   const openProfile = () => {
     // document.getElementById("profileContainer").classList.add("top-32");
     // document.getElementById("profileContainer").classList.remove("top-full");
-    document.getElementById("profileContainer").style.top = "15%";
+    document.getElementById("profileContainer").style.top = "10%";
   };
 
   return (

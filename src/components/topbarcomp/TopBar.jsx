@@ -21,49 +21,17 @@ function TopBar() {
   }, [allData]);
 
   const openAddStrategy = () => {
-    document.getElementById("addStratContainer").style.top = "0%";
+    document.getElementById("addStratContainer").style.top = "10%";
   };
 
   const openAddTrade = () => {
     document.getElementById("addTradeContainer").style.top = "0%";
   };
   return (
-    // <div className="topbarContainer">
-    //   <div className="left">
-    //     {allData && (
-    //       <div className="createdDate">
-    //         Created: {userData?.userInfo?.registerDate}
-    //       </div>
-    //     )}
-    //     {allData && (
-    //       <div className="entries">No. of Entries : {dataEntryCounter} </div>
-    //     )}
-    //     <div className="selectMenuShow">
-    //       <span>Show:</span>
-    //       <select type="range" name="" id="">
-    //         <option value="10">Latest 10</option>
-    //         <option value="20">Latest 20</option>
-    //         <option value="50">Latest 50</option>
-    //         <option value="all">Show all</option>
-    //       </select>
-    //     </div>
-    //   </div>
-    //   <div className="right">
-    //     <div
-    //       className="addStrategy bg-red-600 text-gray-50"
-    //       onClick={openAddStrategy}
-    //     >
-    //       Add Strategy
-    //     </div>
-    //     <div className="addTrade" onClick={openAddTrade}>
-    //       Add Trade
-    //     </div>
-    //   </div>
-    // </div>
     <div className="flex justify-between">
-      <ul className="menu menu-horizontal ml-2 mt-2 rounded-box bg-secondary shadow-md">
+      <ul className="menu menu-horizontal ml-2 mt-2 rounded-box bg-primary shadow-md">
         <li>
-          <a className="hover:bg-base-300">
+          <a className="hover:bg-primary0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -99,7 +67,7 @@ function TopBar() {
           </a>
         </li>
         <li>
-          <a className=" hover:bg-base-300">
+          <a className="focus:bg-primary0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -127,11 +95,17 @@ function TopBar() {
         </li>
       </ul>
       <div className="join mr-2 mt-2 drop-shadow-md">
-        <button className="btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary">
+        <button
+          className="btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary"
+          onClick={openAddStrategy}
+        >
           Add Strategy
         </button>
 
-        <button className=" btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary">
+        <button
+          className=" btn join-item border-primary bg-primary hover:border-secondary hover:bg-secondary"
+          onClick={openAddTrade}
+        >
           Add Trade
         </button>
       </div>

@@ -33,7 +33,7 @@ function Profile() {
 
   return (
     <div
-      className="card card-normal absolute left-0 right-0 top-full z-50 m-auto h-fit max-w-2xl bg-base-200 shadow-xl transition-all duration-100 ease-in-out "
+      className="card card-normal fixed left-0 right-0 top-full z-50 m-auto h-fit max-w-2xl bg-base-200 shadow-xl transition-all duration-100 ease-in-out "
       id="profileContainer"
     >
       <div className="card-body items-center text-center">
