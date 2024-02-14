@@ -566,6 +566,7 @@ function AddTrade() {
                 type="date"
                 className="rounded bg-primary p-2"
                 id="dateDropDown"
+                placeholder="dd/mm/yyyy"
                 onChange={(e) => {
                   let date = e.target.value;
                   let updatedObject = Object.assign({}, tradeDataObject);
