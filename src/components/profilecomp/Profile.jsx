@@ -3,7 +3,6 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/config";
 import { DataContext } from "../../service/DataContext";
 import { DateTime } from "luxon";
-// import "./profile.css";
 
 function Profile() {
   const { userData, userAuthState, siteDate } = useContext(DataContext);
@@ -13,8 +12,6 @@ function Profile() {
   var subEndDate = DateTime.fromFormat(fetchedDate, "d-M-yyyy");
 
   const closeProfile = () => {
-    // document.getElementById("profileContainer").classList.remove("top-32");
-    // document.getElementById("profileContainer").classList.add("top-full");
     document.getElementById("profileContainer").style.top = "110%";
   };
   const signOutUser = async () => {
@@ -87,7 +84,7 @@ function Profile() {
         <button className="btn btn-wide border-primary bg-primary hover:border-secondary hover:bg-secondary">
           Subscribe
         </button>
-        <button class="btn mt-2" onClick={signOutUser}>
+        <button className="btn mt-2" onClick={signOutUser}>
           Sign Out
         </button>
       </div>

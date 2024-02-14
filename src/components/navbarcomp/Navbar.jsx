@@ -39,9 +39,9 @@ function Navbar() {
   };
 
   return (
-    <div class="navbar w-full bg-base-300 drop-shadow-md">
-      <div class="flex-1">
-        <a href="/" class="btn btn-ghost text-xl">
+    <div className="navbar w-full bg-base-300 drop-shadow-md">
+      <div className="flex-1">
+        <a href="/" className="btn btn-ghost text-xl">
           TradeKeep
         </a>
       </div>
@@ -80,8 +80,8 @@ function Navbar() {
         </svg>
       </label>
       {!visible && (
-        <div class="flex-none">
-          <div tabindex="0" role="button" class="avatar placeholder">
+        <div className="flex-none">
+          <div tabIndex="0" role="button" className="avatar placeholder">
             {/* <div className="initialOfUser absolute bottom-0 left-0 right-0 m-auto">
                 
               </div> */}
