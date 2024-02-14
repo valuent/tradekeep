@@ -21,7 +21,7 @@ import Profile from "./components/profilecomp/Profile";
 import TopBar from "./components/topbarcomp/TopBar";
 import AddStrategy from "./components/addstrategycomp/AddStrategy";
 import AddTrade from "./components/addtradecomp/AddTrade";
-import AddTradeDesign from "./components/addtradecomp/AddTradeDesign";
+// import AddTradeDesign from "./components/addtradecomp/AddTradeDesign";
 // import CheckDocSize from "./service/CheckDocSize";
 
 function App() {

@@ -1,41 +1,39 @@
 @import "../utils/variables";
-* {
-  /* width */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+/* width */
 
-    background: #555;
-  }
+/* Track */
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #b6b6b6;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 100px;
+  border-radius: 100px;
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  background: #555;
+}
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
-@font-face {
-  font-family: inter;
-  src: url(../assets/Inter.ttf);
-}
+/* Handle */
 
-body {
-  background-color: $body-black;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 300vh;
-  font-family: inter;
-}
+/* Handle on hover */
+
+// @font-face {
+//   font-family: inter;
+//   src: url(../assets/Inter.ttf);
+// }
+
+// body {
+//   background-color: $body-black;
+//   margin: 0;
+//   padding: 0;
+//   height: 300vh;
+//   font-family: inter;
+// }

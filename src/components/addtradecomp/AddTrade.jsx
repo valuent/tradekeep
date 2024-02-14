@@ -9,9 +9,9 @@ import {
   arrayRemove,
   documentId,
 } from "firebase/firestore";
-import "./addtrade.css";
+
 import { DataContext } from "../../service/DataContext";
-import addInfosvg from "../../assets/addIcon.svg";
+import "../../style/app.css";
 
 function AddTrade() {
   const { userData, userAuthState, siteDate, allData } =
@@ -99,14 +99,14 @@ function AddTrade() {
             length: parseInt(
               tradeDataObject[tradeEntryCount][strategyTag]["detail"][
                 "noOfTrade"
-              ]
+              ],
             ),
           },
-          (_, index) => +index + 1
-        )
+          (_, index) => +index + 1,
+        ),
       );
       document.getElementById("numberOfTrades").value = parseInt(
-        tradeDataObject[tradeEntryCount][strategyTag]["detail"]["noOfTrade"]
+        tradeDataObject[tradeEntryCount][strategyTag]["detail"]["noOfTrade"],
       );
       // Start Of dynamic PnL
     } else if (document.getElementById("numberOfTrades")) {
@@ -116,8 +116,8 @@ function AddTrade() {
           {
             length: parseInt(0),
           },
-          (_, index) => +index + 1
-        )
+          (_, index) => +index + 1,
+        ),
       );
     }
   }, [
@@ -172,7 +172,7 @@ function AddTrade() {
       setTradeType(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "tradeType"
-        ]
+        ],
       );
     } else {
       setTradeType(null);
@@ -193,7 +193,7 @@ function AddTrade() {
       setTradeDirection(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "direction"
-        ]
+        ],
       );
     } else {
       setTradeDirection(null);
@@ -215,7 +215,7 @@ function AddTrade() {
       document.getElementById("quantity").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "quantity"
-        ]
+        ],
       );
     } else if (
       document.getElementById("quantity") &&
@@ -252,7 +252,7 @@ function AddTrade() {
       document.getElementById("entryPrice").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "entryPrice"
-        ]
+        ],
       );
     } else if (
       document.getElementById("entryPrice") &&
@@ -289,7 +289,7 @@ function AddTrade() {
       document.getElementById("exitPrice").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "exitPrice"
-        ]
+        ],
       );
     } else if (
       document.getElementById("exitPrice") &&
@@ -326,7 +326,7 @@ function AddTrade() {
       document.getElementById("tradePnlInput").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "pnl"
-        ]
+        ],
       );
     } else if (
       document.getElementById("tradePnlInput") &&
@@ -363,7 +363,7 @@ function AddTrade() {
       document.getElementById("tradePnlInputND").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
           "pnl"
-        ]
+        ],
       );
     } else if (
       document.getElementById("tradePnlInputND") &&
@@ -401,7 +401,7 @@ function AddTrade() {
         sum = sum * document.getElementById("quantity").value;
         document.getElementById("tradePnlInput").value = sum;
         let pnlTrade = parseFloat(
-          document.getElementById("tradePnlInput").value
+          document.getElementById("tradePnlInput").value,
         );
         let updatedObject = Object.assign({}, tradeDataObject);
         updatedObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -415,7 +415,7 @@ function AddTrade() {
         sum = sum * -document.getElementById("quantity").value;
         document.getElementById("tradePnlInput").value = sum;
         let pnlTrade = parseFloat(
-          document.getElementById("tradePnlInput").value
+          document.getElementById("tradePnlInput").value,
         );
         let updatedObject = Object.assign({}, tradeDataObject);
         updatedObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -433,10 +433,10 @@ function AddTrade() {
         "users",
         userAuthState?.email,
         "userTradeData",
-        userData["tradeWritableDoc"]
+        userData["tradeWritableDoc"],
       ),
       tradeDataObject,
-      { merge: true }
+      { merge: true },
     ).then(() => {
       setSaveTradePop(false);
       closeAddTrade();
@@ -453,7 +453,7 @@ function AddTrade() {
       if (currentSetDocSize > 1024000) {
         const userTradeDataAddDoc = await setDoc(
           doc(db, "users", userAuthState?.email, "userTradeData", nextDocName),
-          {}
+          {},
         );
 
         await updateDoc(doc(db, "users", userAuthState?.email), {
@@ -483,460 +483,549 @@ function AddTrade() {
     setTradeDirection("");
   };
   return (
-    <div className="addTradeContainer" id="addTradeContainer">
-      {saveTradePop === true && (
-        <div className="confirmSave" id="saveConfirmPop">
-          <div className="message">
-            <span className="warning">Warning</span>
-            <span className="msg">
-              Are you sure you want to save the entered data?
-            </span>
-          </div>
-          <div className="buttonsConfirm">
-            <button
-              onClick={() => {
-                setSaveTradePop(false);
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => {
-                saveTradeDataToDb();
-              }}
-            >
-              Save Data
-            </button>
-          </div>
-        </div>
-      )}
+    <div
+    // className="fixed top-20 z-50 h-full w-full  transition-all duration-100 ease-in-out "
+    >
       <div
-        className="exit"
-        onClick={() => {
-          closeAddTrade();
-        }}
+        id="addTradeContainer"
+        className="card fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-scroll bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
       >
-        <div className="line1"></div>
-        <div className="line2"></div>
-      </div>
-      <div className="title">Add Trade</div>
-      {/* Date Selection */}
-      {!tradeDataObject[tradeEntryCount] && (
-        <div className="topbtn">
-          <div className="startButtonTitle">Double click on Start</div>
-          <button
-            className="startTrade"
-            onClick={() => {
-              countEntries();
-              setStart(true);
-              if (tradeEntryCount) {
-                let updatedObject = {
-                  [tradeEntryCount]: {},
-                };
-                setTradeDataObject(updatedObject);
-              }
-            }}
+        <button
+          onClick={() => {
+            closeAddTrade();
+          }}
+          className="btn btn-square btn-sm absolute right-3 top-3 border-primary bg-primary hover:border-red-500 hover:bg-red-500 "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Start
-          </button>
-        </div>
-      )}
-      {start && tradeDataObject[tradeEntryCount] && (
-        <div className="dateSelection">
-          <label htmlFor="date">Select date</label>
-          <input
-            type="date"
-            name="dateDropDown"
-            id="dateDropDown"
-            onChange={(e) => {
-              let date = e.target.value;
-              let updatedObject = Object.assign({}, tradeDataObject);
-              updatedObject[tradeEntryCount]["date"] = date;
-              setTradeDataObject(updatedObject);
-            }}
-          />
-        </div>
-      )}
-      {/* StrategySelection */}
-      {tradeDataObject[tradeEntryCount] &&
-        tradeDataObject[tradeEntryCount]?.["date"] &&
-        tradeDataObject[tradeEntryCount]?.["date"] != "" && (
-          <div className="strategySelection">
-            <div className="title">Select strategy to enter trade data</div>
-            <div className="strategyBtn">
-              {userData?.strategytags.map((strategy, i) => {
-                return (
-                  <button
-                    key={i}
-                    className={i === activeButton ? "active" : "inactive"}
-                    onClick={(e) => {
-                      let strategyObject = {};
-                      let updatedObject = Object.assign({}, tradeDataObject);
-                      if (updatedObject[tradeEntryCount][strategy]) {
-                        setStrategyTag(strategy);
-                      } else {
-                        updatedObject[tradeEntryCount][strategy] =
-                          strategyObject;
-                        setTradeDataObject(updatedObject);
-                        setStrategyTag(strategy);
-                      }
-                      handleClick(i);
-                    }}
-                  >
-                    {strategy}
-                  </button>
-                );
-              })}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        {saveTradePop === true && (
+          <div className="card fixed left-0 right-0 z-50 m-auto mt-72 w-96 bg-neutral text-neutral-content">
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-warning">Warning</h2>
+              Are you sure you want to save the entered data?
+              <div className="card-actions justify-end">
+                <button
+                  className="btn border-0 bg-primary hover:border-0 hover:bg-secondary"
+                  onClick={() => {
+                    saveTradeDataToDb();
+                  }}
+                >
+                  Save
+                </button>
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => {
+                    setSaveTradePop(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         )}
-      {tradeDataObject[tradeEntryCount] && strategyTag && (
-        <div className="pnl">
-          <label htmlFor="AddPNL">Enter PnL for {strategyTag}</label>
-          <input
-            type="number"
-            name=""
-            id="pnlInput"
-            step={0.05}
-            placeholder="Profit/Loss"
-            onChange={(e) => {
-              let pnlObject = parseFloat(e.target.value);
-              let updatedObject = Object.assign({}, tradeDataObject);
-              updatedObject[tradeEntryCount][strategyTag]["pnl"] = pnlObject;
-              setTradeDataObject(updatedObject);
-            }}
-          />
-        </div>
-      )}
-      {tradeDataObject[tradeEntryCount] && strategyTag && isTradewise == 0 && (
-        <div
-          className="addMoreInfoBtn"
-          onClick={() => {
-            let updatedObject = Object.assign({}, tradeDataObject);
-            updatedObject[tradeEntryCount][strategyTag]["detail"] = {};
-            setTradeDataObject(updatedObject);
-          }}
-        >
-          <span>Add Trade-wise Data</span>
-          <img src={addInfosvg} />
-        </div>
-      )}
-      {tradeDataObject[tradeEntryCount] && strategyTag && isTradewise == 1 && (
-        <div
-          className="addMoreInfoBtn"
-          onClick={() => {
-            let updatedObject = Object.assign({}, tradeDataObject);
-            delete updatedObject[tradeEntryCount][strategyTag]["detail"];
-            setTradeDataObject(updatedObject);
-          }}
-        >
-          <span>Remove Trade-wise Data</span>
-          <img src={addInfosvg} className="removeTradewise" />
-        </div>
-      )}
-      {tradeDataObject[tradeEntryCount] && isTradewise == 1 && (
-        <div className="numOfTrades">
-          <div className="title">Input number of trades for {strategyTag}</div>
-          <input
-            id="numberOfTrades"
-            type="number"
-            step={1}
-            pattern="[0-9]*"
-            placeholder="No. of trades"
-            onInput={(e) => {
-              if (e.target.value > 20) {
-                e.target.value = 20;
-              }
-            }}
-            onChange={(e) => {
-              let noOfTradeObject = parseInt(e.target.value);
-              let updatedObject = Object.assign({}, tradeDataObject);
-              updatedObject[tradeEntryCount][strategyTag]["detail"][
-                "noOfTrade"
-              ] = noOfTradeObject;
-              setTradeDataObject(updatedObject);
-            }}
-          />
-        </div>
-      )}
-      {tradeDataObject[tradeEntryCount] && isTradewise == 1 && (
-        <div className="tradeSelectionMenu">
-          {/* <button className={i === activeTradeButton ? "active" : "inactive"}>
-          Trade 1
-        </button> */}
-          {numberOfTrades?.map((i) => {
-            let tradeName = "trade_" + i;
-            return (
+        <div className="card-body items-center text-center">
+          <h2 className="card-title">Add Trade</h2>
+          {!tradeDataObject[tradeEntryCount] && (
+            <>
+              <div className="title text-lg">Double Click to add trade</div>
               <button
-                key={i}
-                className={i === activeTradeButton ? "active" : "inactive"}
-                onClick={(e) => {
-                  let tradeObject = {};
-                  let updatedObject = Object.assign({}, tradeDataObject);
-                  if (
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      tradeName
-                    ]
-                  ) {
-                    setActiveTradeTag(tradeName);
-                  } else {
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      tradeName
-                    ] = tradeObject;
+                className="btn w-32 bg-primary text-lg hover:bg-secondary"
+                onClick={() => {
+                  countEntries();
+                  setStart(true);
+                  if (tradeEntryCount) {
+                    let updatedObject = {
+                      [tradeEntryCount]: {},
+                    };
                     setTradeDataObject(updatedObject);
-                    setActiveTradeTag(tradeName);
                   }
-                  handleTradeBtnClick(i);
                 }}
               >
-                Trade {i}
+                Start
               </button>
-            );
-          })}
-        </div>
-      )}
-      {tradeDataObject[tradeEntryCount] &&
-        isTradewise == 1 &&
-        activeTradeTag &&
-        numberOfTrades.length > 0 &&
-        activeTradeButton && (
-          <div className="tradeWiseInputs">
-            <div className="title">
-              {activeTradeTag
-                .split("_")
-                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(" ")}
-            </div>
-            <div className="tradeDataInput">
-              <div className="title">Add Scrip Name</div>
+            </>
+          )}
+          {start && tradeDataObject[tradeEntryCount] && (
+            <>
+              <div className="title text-lg">Add Date</div>
               <input
-                type="text"
-                pattern="[^' ']+"
-                name=""
-                id="tradeScripName"
-                placeholder="Scrip Name"
-                style={{ textTransform: "uppercase" }}
-                onClick={(e) => {
-                  const input = document.getElementById("tradeScripName");
-                  input.addEventListener("keypress", function (e) {
-                    if (e.key === " ") {
-                      e.preventDefault();
-                    }
-                  });
-                }}
+                type="date"
+                className="rounded bg-primary p-2"
+                id="dateDropDown"
                 onChange={(e) => {
-                  let tradeInfoData = e.target.value.toUpperCase();
+                  let date = e.target.value;
                   let updatedObject = Object.assign({}, tradeDataObject);
-                  updatedObject[tradeEntryCount][strategyTag]["detail"][
-                    activeTradeTag
-                  ]["scripName"] = tradeInfoData;
+                  updatedObject[tradeEntryCount]["date"] = date;
                   setTradeDataObject(updatedObject);
                 }}
               />
-            </div>
-            <div className="tradeTypeBtn">
-              <button
-                className={
-                  tradeType == "Directional"
-                    ? "tradeType active"
-                    : "tradeType inactive"
-                }
-                onClick={(e) => {
-                  let tradeType = "Directional";
+            </>
+          )}
+          {tradeDataObject[tradeEntryCount] &&
+            tradeDataObject[tradeEntryCount]?.["date"] &&
+            tradeDataObject[tradeEntryCount]?.["date"] != "" && (
+              <>
+                <div className="title mt-3 text-lg">
+                  Select strategy to enter trade data
+                </div>
+                <div className="join">
+                  {userData?.strategytags.map((strategy, i) => {
+                    return (
+                      <input
+                        key={i}
+                        className="btn join-item border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
+                        type="radio"
+                        name="strategy"
+                        aria-label={strategy}
+                        onClick={(e) => {
+                          let strategyObject = {};
+                          let updatedObject = Object.assign(
+                            {},
+                            tradeDataObject,
+                          );
+                          if (updatedObject[tradeEntryCount][strategy]) {
+                            setStrategyTag(strategy);
+                          } else {
+                            updatedObject[tradeEntryCount][strategy] =
+                              strategyObject;
+                            setTradeDataObject(updatedObject);
+                            setStrategyTag(strategy);
+                          }
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          {tradeDataObject[tradeEntryCount] && strategyTag && (
+            <>
+              <div className="title mt-3 text-lg">
+                Enter PnL for {strategyTag}
+              </div>
+              <input
+                type="number"
+                id="pnlInput"
+                step={0.05}
+                placeholder="Profit/Loss"
+                onChange={(e) => {
+                  let pnlObject = parseFloat(e.target.value);
                   let updatedObject = Object.assign({}, tradeDataObject);
-                  updatedObject[tradeEntryCount][strategyTag]["detail"][
-                    activeTradeTag
-                  ]["tradeType"] = tradeType;
+                  updatedObject[tradeEntryCount][strategyTag]["pnl"] =
+                    pnlObject;
                   setTradeDataObject(updatedObject);
-                  setTradeType("Directional");
+                }}
+                class="input input-bordered max-w-xs text-lg"
+              />
+            </>
+          )}
+          {tradeDataObject[tradeEntryCount] &&
+            strategyTag &&
+            isTradewise == 0 && (
+              <div
+                className="tradewise mt-3 flex h-fit cursor-pointer items-center justify-center"
+                onClick={() => {
+                  let updatedObject = Object.assign({}, tradeDataObject);
+                  updatedObject[tradeEntryCount][strategyTag]["detail"] = {};
+                  setTradeDataObject(updatedObject);
                 }}
               >
-                Directional
-              </button>
-              <button
-                className={
-                  tradeType == "Non-Directional"
-                    ? "tradeType active"
-                    : "tradeType inactive"
-                }
-                onClick={(e) => {
-                  let tradeType = "Non-Directional";
+                <p className="mr-3">Add trade-wise data</p>
+                <button className="btn btn-circle btn-outline">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 rotate-45"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )}
+          {tradeDataObject[tradeEntryCount] &&
+            strategyTag &&
+            isTradewise == 1 && (
+              <div
+                className="tradewise mt-3 flex h-fit cursor-pointer items-center justify-center"
+                onClick={() => {
                   let updatedObject = Object.assign({}, tradeDataObject);
-                  updatedObject[tradeEntryCount][strategyTag]["detail"][
-                    activeTradeTag
-                  ]["tradeType"] = tradeType;
+                  delete updatedObject[tradeEntryCount][strategyTag]["detail"];
+                  setTradeDirection("");
+                  setTradeType("");
                   setTradeDataObject(updatedObject);
-                  setTradeType("Non-Directional");
                 }}
               >
-                Non-Directional
-              </button>
-            </div>
-            {tradeType == "Directional" && (
-              <div className="directionSelectBtn">
-                <button
-                  className={
-                    tradeDirection == "Long"
-                      ? "direction active"
-                      : "direction inactive"
-                  }
-                  onClick={(e) => {
-                    let tradeDirection = "Long";
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      activeTradeTag
-                    ]["direction"] = tradeDirection;
-                    setTradeDataObject(updatedObject);
-                    setTradeDirection("Long");
-                  }}
-                >
-                  Long
-                </button>
-                <button
-                  className={
-                    tradeDirection == "Short"
-                      ? "direction active"
-                      : "direction inactive"
-                  }
-                  onClick={(e) => {
-                    let tradeDirection = "Short";
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      activeTradeTag
-                    ]["direction"] = tradeDirection;
-                    setTradeDataObject(updatedObject);
-                    setTradeDirection("Short");
-                  }}
-                >
-                  Short
+                <p className="mr-3">Remove trade-wise data</p>
+                <button className="btn btn-circle btn-outline">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
                 </button>
               </div>
             )}
-
-            {tradeType == "Directional" && tradeDirection && (
-              <div className="tradeDataInput">
-                <div className="title">Add Qty</div>
-                <input
-                  type="number"
-                  id="quantity"
-                  step={1}
-                  placeholder="Quantity"
-                  onChange={(e) => {
-                    let tradeQty = parseInt(e.target.value);
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      activeTradeTag
-                    ]["quantity"] = tradeQty;
-                    setTradeDataObject(updatedObject);
-                    setTempToRefreshPnl(tradeQty);
-                  }}
-                />
+          {tradeDataObject[tradeEntryCount] && isTradewise == 1 && (
+            <>
+              <div className="title mt-3 text-lg">
+                Enter number of trades for {strategyTag}
               </div>
+              <input
+                type="number"
+                class="input input-bordered max-w-xs text-lg"
+                id="numberOfTrades"
+                step={1}
+                pattern="[0-9]*"
+                placeholder="No. of trades"
+                onInput={(e) => {
+                  if (e.target.value > 20) {
+                    e.target.value = 20;
+                  }
+                  if (e.target.value < 0) {
+                    e.target.value = 0;
+                  }
+                }}
+                onChange={(e) => {
+                  let noOfTradeObject = parseInt(e.target.value);
+                  let updatedObject = Object.assign({}, tradeDataObject);
+                  updatedObject[tradeEntryCount][strategyTag]["detail"][
+                    "noOfTrade"
+                  ] = noOfTradeObject;
+                  setTradeDataObject(updatedObject);
+                }}
+              />
+            </>
+          )}
+          {tradeDataObject[tradeEntryCount] &&
+            isTradewise == 1 &&
+            numberOfTrades && (
+              <>
+                <div className="title mt-3 text-lg">Select Trade</div>
+                <div className="join">
+                  {numberOfTrades?.map((i) => {
+                    let tradeName = "trade_" + i;
+                    let tradeDisplayName = "Trade " + i;
+                    return (
+                      <button
+                        key={i}
+                        className={
+                          i === activeTradeButton
+                            ? "btn join-item btn-active border-primary bg-primary hover:border-primary hover:bg-primary"
+                            : "btn join-item border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
+                        }
+                        type="radio"
+                        name="tradeCount"
+                        onClick={(e) => {
+                          let tradeObject = {};
+                          let updatedObject = Object.assign(
+                            {},
+                            tradeDataObject,
+                          );
+                          if (
+                            updatedObject[tradeEntryCount][strategyTag][
+                              "detail"
+                            ][tradeName]
+                          ) {
+                            setActiveTradeTag(tradeName);
+                          } else {
+                            updatedObject[tradeEntryCount][strategyTag][
+                              "detail"
+                            ][tradeName] = tradeObject;
+                            setTradeDataObject(updatedObject);
+                            setActiveTradeTag(tradeName);
+                          }
+                          handleTradeBtnClick(i);
+                        }}
+                      >
+                        {tradeDisplayName}
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
             )}
-            {tradeType == "Directional" && tradeDirection && (
-              <div className="tradeDataInput">
-                <div className="title">Add Entry Price</div>
-                <input
-                  type="number"
-                  name=""
-                  id="entryPrice"
-                  step={0.05}
-                  placeholder="Entry Price"
-                  onChange={(e) => {
-                    let entryPrice = parseFloat(e.target.value);
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      activeTradeTag
-                    ]["entryPrice"] = entryPrice;
-                    setTradeDataObject(updatedObject);
-                    setTempToRefreshPnl(entryPrice);
-                  }}
-                />
-              </div>
-            )}
-            {tradeType == "Directional" && tradeDirection && (
-              <div className="tradeDataInput">
-                <div className="title">Add Exit Price</div>
-                <input
-                  type="number"
-                  name=""
-                  id="exitPrice"
-                  step={0.05}
-                  placeholder="Exit Price"
-                  onChange={(e) => {
-                    let exitPrice = parseFloat(e.target.value);
-                    let updatedObject = Object.assign({}, tradeDataObject);
-                    updatedObject[tradeEntryCount][strategyTag]["detail"][
-                      activeTradeTag
-                    ]["exitPrice"] = exitPrice;
-                    setTradeDataObject(updatedObject);
-                    setTempToRefreshPnl(exitPrice);
-                  }}
-                />
-              </div>
-            )}
-            {tradeType == "Directional" && (
-              <div className="tradeDataInput">
-                <div className="title">Add Pnl</div>
-                <input
-                  type="number"
-                  name=""
-                  id="tradePnlInput"
-                  step={0.05}
-                  placeholder="Profit/Loss"
-                  onChange={(e) => {
-                    if (tradeType == "Non-Directional") {
-                      let pnl = parseFloat(e.target.value);
+          {tradeDataObject[tradeEntryCount] &&
+            isTradewise == 1 &&
+            activeTradeTag &&
+            numberOfTrades.length > 0 &&
+            activeTradeButton && (
+              <div className="card flex items-center justify-center bg-base-200 px-10 pb-10">
+                <div className="title mb-3 mt-3 text-lg">
+                  {activeTradeTag
+                    .split("_")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                </div>
+                <label className="input input-bordered  flex w-full items-center gap-2">
+                  Name
+                  <input
+                    type="text"
+                    pattern="[^' ']+"
+                    name=""
+                    id="tradeScripName"
+                    style={{ textTransform: "uppercase" }}
+                    onClick={(e) => {
+                      const input = document.getElementById("tradeScripName");
+                      input.addEventListener("keypress", function (e) {
+                        if (e.key === " ") {
+                          e.preventDefault();
+                        }
+                      });
+                    }}
+                    onChange={(e) => {
+                      let tradeInfoData = e.target.value.toUpperCase();
                       let updatedObject = Object.assign({}, tradeDataObject);
                       updatedObject[tradeEntryCount][strategyTag]["detail"][
                         activeTradeTag
-                      ]["pnl"] = pnl;
+                      ]["scripName"] = tradeInfoData;
                       setTradeDataObject(updatedObject);
+                    }}
+                    className="grow bg-base-100 "
+                    placeholder="Stock/Index"
+                  />
+                </label>
+                <div className="join mt-3 w-full">
+                  <button
+                    className={
+                      tradeType === "Directional"
+                        ? "btn join-item btn-active w-1/2 border-primary bg-primary hover:border-primary hover:bg-primary"
+                        : "btn join-item w-1/2 border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
                     }
-                  }}
-                />
-              </div>
-            )}
-
-            {tradeType == "Non-Directional" && (
-              <div className="tradeDataInput">
-                <div className="title">Add Pnl</div>
-                <input
-                  type="number"
-                  name=""
-                  id="tradePnlInputND"
-                  step={0.05}
-                  placeholder="Profit/Loss"
-                  onChange={(e) => {
-                    if (tradeType == "Non-Directional") {
-                      let pnl = parseFloat(e.target.value);
+                    onClick={(e) => {
+                      let tradeType = "Directional";
                       let updatedObject = Object.assign({}, tradeDataObject);
                       updatedObject[tradeEntryCount][strategyTag]["detail"][
                         activeTradeTag
-                      ]["pnl"] = pnl;
+                      ]["tradeType"] = tradeType;
                       setTradeDataObject(updatedObject);
+                      setTradeType("Directional");
+                    }}
+                  >
+                    Directional
+                  </button>
+                  <button
+                    className={
+                      tradeType === "Non-Directional"
+                        ? "btn join-item btn-active w-1/2 border-primary bg-primary hover:border-primary hover:bg-primary"
+                        : "btn join-item w-1/2 border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
                     }
-                  }}
-                />
+                    onClick={(e) => {
+                      let tradeType = "Non-Directional";
+                      let updatedObject = Object.assign({}, tradeDataObject);
+                      updatedObject[tradeEntryCount][strategyTag]["detail"][
+                        activeTradeTag
+                      ]["tradeType"] = tradeType;
+                      setTradeDataObject(updatedObject);
+                      setTradeType("Non-Directional");
+                    }}
+                  >
+                    Non-Directional
+                  </button>
+                </div>
+                {tradeType == "Directional" && (
+                  <div className="join mb-1 mt-3 w-full">
+                    <button
+                      className={
+                        tradeDirection === "Long"
+                          ? "btn join-item btn-active w-1/2 border-primary bg-primary hover:border-primary hover:bg-primary"
+                          : "btn join-item w-1/2 border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
+                      }
+                      onClick={(e) => {
+                        let tradeDirection = "Long";
+                        let updatedObject = Object.assign({}, tradeDataObject);
+                        updatedObject[tradeEntryCount][strategyTag]["detail"][
+                          activeTradeTag
+                        ]["direction"] = tradeDirection;
+                        setTradeDataObject(updatedObject);
+                        setTradeDirection("Long");
+                      }}
+                    >
+                      Long
+                    </button>
+                    <button
+                      className={
+                        tradeDirection === "Short"
+                          ? "btn join-item btn-active w-1/2 border-primary bg-primary hover:border-primary hover:bg-primary"
+                          : "btn join-item w-1/2 border-secondary bg-secondary hover:border-secondary hover:bg-secondary"
+                      }
+                      onClick={(e) => {
+                        let tradeDirection = "Short";
+                        let updatedObject = Object.assign({}, tradeDataObject);
+                        updatedObject[tradeEntryCount][strategyTag]["detail"][
+                          activeTradeTag
+                        ]["direction"] = tradeDirection;
+                        setTradeDataObject(updatedObject);
+                        setTradeDirection("Short");
+                      }}
+                    >
+                      Short
+                    </button>
+                  </div>
+                )}
+                {tradeType == "Directional" && tradeDirection && (
+                  <label className="input input-bordered my-2 flex w-full items-center gap-2">
+                    Qty
+                    <input
+                      className=" grow bg-base-100"
+                      type="number"
+                      id="quantity"
+                      step={1}
+                      placeholder="Quantity"
+                      onChange={(e) => {
+                        let tradeQty = parseInt(e.target.value);
+                        let updatedObject = Object.assign({}, tradeDataObject);
+                        updatedObject[tradeEntryCount][strategyTag]["detail"][
+                          activeTradeTag
+                        ]["quantity"] = tradeQty;
+                        setTradeDataObject(updatedObject);
+                        setTempToRefreshPnl(tradeQty);
+                      }}
+                    />
+                  </label>
+                )}
+                {tradeType == "Directional" && tradeDirection && (
+                  <label className="input input-bordered my-2 flex w-full items-center gap-2">
+                    Entry Price
+                    <input
+                      type="number"
+                      name=""
+                      id="entryPrice"
+                      step={0.05}
+                      onChange={(e) => {
+                        let entryPrice = parseFloat(e.target.value);
+                        let updatedObject = Object.assign({}, tradeDataObject);
+                        updatedObject[tradeEntryCount][strategyTag]["detail"][
+                          activeTradeTag
+                        ]["entryPrice"] = entryPrice;
+                        setTradeDataObject(updatedObject);
+                        setTempToRefreshPnl(entryPrice);
+                      }}
+                      className="grow bg-base-100"
+                      placeholder="Add Entry Price"
+                    />
+                  </label>
+                )}
+                {tradeType == "Directional" && tradeDirection && (
+                  <label className="input input-bordered my-2 flex w-full items-center gap-2">
+                    Exit Price
+                    <input
+                      type="number"
+                      name=""
+                      id="exitPrice"
+                      step={0.05}
+                      onChange={(e) => {
+                        let exitPrice = parseFloat(e.target.value);
+                        let updatedObject = Object.assign({}, tradeDataObject);
+                        updatedObject[tradeEntryCount][strategyTag]["detail"][
+                          activeTradeTag
+                        ]["exitPrice"] = exitPrice;
+                        setTradeDataObject(updatedObject);
+                        setTempToRefreshPnl(exitPrice);
+                      }}
+                      className="grow bg-base-100"
+                      placeholder="Add Exit Price"
+                    />
+                  </label>
+                )}
+                {tradeType == "Directional" && tradeDirection && (
+                  <label className="input input-bordered my-2 flex w-full items-center gap-2">
+                    PnL
+                    <input
+                      type="number"
+                      name=""
+                      id="tradePnlInput"
+                      step={0.05}
+                      onChange={(e) => {
+                        if (tradeType == "Non-Directional") {
+                          let pnl = parseFloat(e.target.value);
+                          let updatedObject = Object.assign(
+                            {},
+                            tradeDataObject,
+                          );
+                          updatedObject[tradeEntryCount][strategyTag]["detail"][
+                            activeTradeTag
+                          ]["pnl"] = pnl;
+                          setTradeDataObject(updatedObject);
+                        }
+                      }}
+                      className="grow bg-base-100"
+                      placeholder="Add PnL"
+                    />
+                  </label>
+                )}
+                {tradeType == "Non-Directional" && (
+                  <label className="input input-bordered my-2 flex w-full items-center gap-2">
+                    PnL
+                    <input
+                      type="number"
+                      name=""
+                      id="tradePnlInputND"
+                      step={0.05}
+                      onChange={(e) => {
+                        if (tradeType == "Non-Directional") {
+                          let pnl = parseFloat(e.target.value);
+                          let updatedObject = Object.assign(
+                            {},
+                            tradeDataObject,
+                          );
+                          updatedObject[tradeEntryCount][strategyTag]["detail"][
+                            activeTradeTag
+                          ]["pnl"] = pnl;
+                          setTradeDataObject(updatedObject);
+                        }
+                      }}
+                      className="grow bg-base-100"
+                      placeholder="Add PnL"
+                    />
+                  </label>
+                )}
               </div>
             )}
-          </div>
-        )}
-      {tradeDataObject[tradeEntryCount] &&
-        tradeEntryCount >= 0 &&
-        strategyTag && (
-          <div className="finalButton">
-            <button
-              className="Confirm"
-              onClick={() => {
-                setSaveTradePop(true);
-                checkSizeAndAddDoc();
-              }}
-            >
-              Confirm
-            </button>
-          </div>
-        )}
+          {tradeDataObject[tradeEntryCount] &&
+            tradeEntryCount >= 0 &&
+            strategyTag && (
+              <div
+                className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"
+                onClick={() => {
+                  setSaveTradePop(true);
+                  checkSizeAndAddDoc();
+                }}
+              >
+                Confirm
+              </div>
+            )}
+        </div>
+      </div>
     </div>
   );
 }

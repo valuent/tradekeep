@@ -58,7 +58,7 @@ function AddStrategy() {
             to {strategyToDelete}
             <div className="card-actions justify-end">
               <button
-                className="btn btn-primary"
+                className="btn border-0 bg-primary hover:border-0 hover:bg-secondary"
                 onClick={() => {
                   closeConfirmPopDelete();
                 }}
@@ -117,7 +117,7 @@ function AddStrategy() {
               <tbody>
                 {userStrategyTags?.map((strategy, i) => {
                   return (
-                    <tr className="hover">
+                    <tr key={i} className="hover">
                       <th>{i + 1}</th>
                       <td>{strategy}</td>
                       <td>
