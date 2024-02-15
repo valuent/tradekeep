@@ -21,7 +21,7 @@ import Profile from "./components/profilecomp/Profile";
 import TopBar from "./components/topbarcomp/TopBar";
 import AddStrategy from "./components/addstrategycomp/AddStrategy";
 import AddTrade from "./components/addtradecomp/AddTrade";
-// import AddTradeDesign from "./components/addtradecomp/AddTradeDesign";
+import DataTable from "./components/datatablecomp/DataTable";
 // import CheckDocSize from "./service/CheckDocSize";
 
 function App() {
@@ -79,15 +79,15 @@ function App() {
         value={{ userData, userAuthState, siteDate, allData }}
       >
         {/* <AddTradeDesign /> */}
-        <Navbar />
-        <Profile />
-
+        <AddTrade />
         <AddStrategy />
+        <Profile />
         <Register />
         <Login />
+        <Navbar />
         <TopBar />
 
-        <AddTrade />
+        <DataTable />
       </DataContext.Provider>
     </div>
   );

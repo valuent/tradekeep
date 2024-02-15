@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
+import { db } from "../../utils/config";
+import { doc, setDoc } from "firebase/firestore";
 import { auth } from "../../utils/config";
 import { DataContext } from "../../service/DataContext";
 import { DateTime } from "luxon";
@@ -21,12 +23,26 @@ function Profile() {
 
   useEffect(() => {
     const calculatDaysTillExpiry = () => {
-      setDaysTillExpiry(Math.floor(subEndDate?.diff(siteDate).as("days")));
+      setDaysTillExpiry(Math.floor(subEndDate?.diff(siteDate).as("days")) + 1);
     };
     calculatDaysTillExpiry();
   }, [userData]);
 
-  // const uInfo = userData.userInfo;
+  useEffect(() => {
+    const setExpired = async () => {
+      if (daysTillExpiry < 1) {
+        await setDoc(
+          doc(db, "users", userAuthState?.email),
+          {
+            subscriptionData: { isSub: false, trailOver: true },
+            userInfo: { currentPlan: "Expired" },
+          },
+          { merge: true },
+        );
+      }
+    };
+    setExpired();
+  }, [daysTillExpiry, userAuthState]);
 
   return (
     <div
@@ -71,14 +87,16 @@ function Profile() {
               <div className="stat w-full ">
                 <div className="stat-title">Plan</div>
                 <div className="stat-value text-2xl">
-                  {userData?.userInfo?.useType}
+                  {userData?.userInfo?.currentPlan}
                 </div>
               </div>
             </div>
             <div className="stats w-11/12 shadow sm:w-5/12 ">
               <div className="stat w-full ">
                 <div className="stat-title">Days left</div>
-                <div className="stat-value text-2xl">{daysTillExpiry}</div>
+                <div className="stat-value text-2xl">
+                  {daysTillExpiry >= 0 ? daysTillExpiry : "0"}
+                </div>
               </div>
             </div>
           </div>

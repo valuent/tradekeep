@@ -11,6 +11,7 @@ function Register() {
   const [passMatch, setPassMatch] = useState(false);
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [passMatchClass, setPassMatchClass] = useState();
   const { userData, userAuthState, siteDate } = useContext(DataContext);
 
   var setNowDate = siteDate.c;
@@ -21,12 +22,13 @@ function Register() {
         userMail: registerEmail,
         registerDate:
           setNowDate.day + "-" + setNowDate.month + "-" + setNowDate.year,
-        useType: "Free Trial",
+        currentPlan: "Free Trial",
       },
       subscriptionData: {
+        isSub: true,
+        trialOver: false,
         subscriptionStartDate:
           setNowDate.day + "-" + setNowDate.month + "-" + setNowDate.year,
-        type: "free",
         subscriptionEndDate:
           setExpiryDate.day +
           "-" +
@@ -73,11 +75,11 @@ function Register() {
 
     if (passInput1 != passInput2) {
       document.getElementById("passMsg").innerHTML = "Password did not match";
-
+      setPassMatchClass("text-error");
       setPassMatch(false);
     } else {
       document.getElementById("passMsg").innerHTML = "Password Matched!";
-
+      setPassMatchClass("text-success");
       setPassMatch(true);
     }
   };
@@ -187,12 +189,9 @@ function Register() {
                   <span>{errReg}</span>
                 </div>
               )}
-              {passMatch == true && (
-                <div id="passMsg" className="text-success"></div>
-              )}
-              {passMatch != true && (
-                <div id="passMsg" className="text-error"></div>
-              )}
+
+              <div id="passMsg" className={passMatchClass}></div>
+
               {passMatch == true && (
                 <div className="form-control mt-6">
                   <button
