@@ -24,6 +24,8 @@ import AddTrade from "./components/addtradecomp/AddTrade";
 import DataTable from "./components/datatablecomp/DataTable";
 // import CheckDocSize from "./service/CheckDocSize";
 
+import SendTestData from "./service/SendTestData";
+
 function App() {
   var siteDate = DateTime.now().setZone("local");
 
@@ -79,6 +81,7 @@ function App() {
         value={{ userData, userAuthState, siteDate, allData }}
       >
         {/* <AddTradeDesign /> */}
+
         <AddTrade />
         <AddStrategy />
         <Profile />

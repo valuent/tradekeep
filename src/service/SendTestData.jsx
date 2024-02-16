@@ -90,9 +90,9 @@ function SendTestData() {
     // await updateDoc(testingSendingData, { strategyTags: arrayUnion(data) });
 
     await setDoc(
-      doc(db, "users", userAuthState?.email, "userTradeData", "tradeDoc_1"),
+      doc(db, "users", userAuthState?.email, "userTradeData", "tradeDoc_2"),
       tradeDataTemp,
-      { merge: true }
+      { merge: true },
     );
   };
 

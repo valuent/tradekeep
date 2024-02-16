@@ -30,11 +30,11 @@ function Profile() {
 
   useEffect(() => {
     const setExpired = async () => {
-      if (daysTillExpiry < 1) {
+      if (daysTillExpiry < 1 && userAuthState?.email) {
         await setDoc(
           doc(db, "users", userAuthState?.email),
           {
-            subscriptionData: { isSub: false, trailOver: true },
+            subscriptionData: { isSub: false, trialOver: true },
             userInfo: { currentPlan: "Expired" },
           },
           { merge: true },
@@ -42,7 +42,7 @@ function Profile() {
       }
     };
     setExpired();
-  }, [daysTillExpiry, userAuthState]);
+  }, [daysTillExpiry, userAuthState?.email]);
 
   return (
     <div
