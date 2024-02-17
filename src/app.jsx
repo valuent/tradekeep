@@ -46,7 +46,7 @@ function App() {
           (doc) => {
             setUserData(doc.data());
             setSizeCount(true);
-            console.log(doc.data());
+            // console.log(doc.data());
           },
         );
       }
@@ -71,9 +71,9 @@ function App() {
     }
   }, [userData]);
 
-  useEffect(() => {
-    console.log(allData);
-  }, [allData]);
+  // useEffect(() => {
+  //   console.log(allData);
+  // }, [allData]);
 
   return (
     <div>

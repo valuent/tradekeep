@@ -1,11 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { DataContext } from "../../service/DataContext";
+import { db } from "../../utils/config";
+import { setDoc, updateDoc, doc, deleteField } from "firebase/firestore";
+import "../../style/app.css";
+
+import TradeInfo from "../tradeinfocomp/TradeInfo";
 
 function DataTable() {
   const { userData, userAuthState, siteDate, allData } =
     useContext(DataContext);
   const [allObject, setAllObject] = useState();
-  const [dataArray, setDataArray] = useState();
+  const [tradeInfoKey, setTradeInfoKey] = useState("");
 
   const calculateROI = (totalPnl, totalInvestment) => {
     if (totalInvestment === 0) return "N/A"; // Handle division by zero
@@ -33,13 +38,31 @@ function DataTable() {
     processTradeData();
   }, [allData]);
 
-  // useEffect(() => {
-  //   console.log(allObject);
-  // }, [allObject]);
+  const openUpdateTrade = () => {
+    document.getElementById("UpdateTradeContainer").top = "10%";
+  };
+
   let trailingPnl = 0;
+
+  const deleteEntry = async (entryId) => {
+    // const docRef = doc(db, "users", userAuthState.email, "userTradeData");
+    Object.keys(allData).forEach(async (key) => {
+      let docRef = doc(db, "users", userAuthState.email, "userTradeData", key);
+      await updateDoc(docRef, {
+        [entryId]: deleteField(),
+      });
+    });
+  };
+
+  const getTradeInfo = (trade) => {
+    setTradeInfoKey(trade);
+    document.getElementById("tradeInfoContainer").style.top = "10%";
+  };
   return (
     <div className="flex  items-center justify-center ">
-      <div className="mt-6 max-h-[75vh] w-11/12 overflow-x-auto overflow-y-scroll">
+      {/* {tradeInfoKey && <TradeInfo />} */}
+      <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
+      <div className="mt-6 max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">
             <tr key="1" className=" bg-base-200">
@@ -50,7 +73,8 @@ function DataTable() {
               <td>Total</td>
               <td>ROI</td>
               <td>Trailing P/L</td>
-              <td className="w-20 bg-base-200">Info/Edit</td>
+              <td className="w-20 bg-base-200">All Info</td>
+              <td className="w-20 bg-base-200">Edit/Delete</td>
             </tr>
           </thead>
           <tbody className="text-center">
@@ -61,10 +85,10 @@ function DataTable() {
               }, 0);
               let prevTrailingPnl = trailingPnl;
               trailingPnl = prevTrailingPnl + total;
-              let totalInvestment = 7200000; // Total capital invested for ROI calculation
+              let totalInvestment = 7000000; // Total capital invested for ROI calculation
               let roi = calculateROI(total, totalInvestment); // Calculate ROI// Initialize accumulator with 0
               return (
-                <tr key={key.id}>
+                <tr key={key.id} className="font-bold">
                   <th key={key.id}>{key.date}</th>
                   {userData?.strategytags?.map((element) => {
                     let stat = element;
@@ -90,47 +114,99 @@ function DataTable() {
                   </td>
 
                   {prevTrailingPnl < trailingPnl && (
-                    <td className="flex items-center justify-center text-center text-green-400">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="h-4 w-4"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                        />
-                      </svg>
+                    <td className=" text-center text-green-400">
+                      <div className="flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="h-4 w-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                          />
+                        </svg>
 
-                      {trailingPnl}
+                        {trailingPnl}
+                      </div>
                     </td>
                   )}
                   {prevTrailingPnl > trailingPnl && (
                     <td className="flex items-center justify-center text-center text-red-400">
+                      <div className="flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="h-4 w-4"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                          />
+                        </svg>
+
+                        {trailingPnl}
+                      </div>
+                    </td>
+                  )}
+                  <td>
+                    <button
+                      className="text-light tra rounded bg-primary p-2 transition-all duration-200 hover:bg-secondary"
+                      onClick={() => {
+                        // deleteRowData(key);
+
+                        getTradeInfo(key);
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="h-4 w-4"
+                        className="h-6 w-6"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                          d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
                         />
                       </svg>
-
-                      {trailingPnl}
-                    </td>
-                  )}
+                    </button>
+                  </td>
                   <td>
-                    <a href={key.date}>....</a>
+                    <button
+                      className="text-light tra rounded bg-primary p-2 transition-all duration-200 hover:bg-secondary"
+                      onClick={() => {
+                        // deleteRowData(key);
+
+                        getTradeInfo(key);
+                        // deleteEntry(key.entryUid);
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                        />
+                      </svg>
+                    </button>
                   </td>
                   {/* Render total value */}
                 </tr>

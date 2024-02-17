@@ -1,17 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { db } from "../../utils/config";
-import {
-  collection,
-  setDoc,
-  updateDoc,
-  doc,
-  arrayUnion,
-  arrayRemove,
-  documentId,
-} from "firebase/firestore";
+import { setDoc, updateDoc, doc } from "firebase/firestore";
 
-import { DataContext } from "../../service/DataContext";
 import "../../style/app.css";
+import { DataContext } from "../../service/DataContext";
 
 function AddTrade() {
   const { userData, userAuthState, siteDate, allData } =
@@ -36,29 +28,9 @@ function AddTrade() {
   const [saveTradePop, setSaveTradePop] = useState(false);
 
   const countEntries = () => {
-    if (userData && allData) {
-      let writableDoc = userData?.tradeWritableDoc;
-      let lastDoc = allData[writableDoc];
-      if (lastDoc && writableDoc) {
-        let lastWrittenUid = Object.keys(lastDoc)?.at(-1);
-        if (!lastWrittenUid) {
-          setTradeEntryCount(1);
-        } else {
-          setTradeEntryCount(parseInt(lastWrittenUid) + 1);
-        }
-      }
+    if (!tradeEntryCount) {
+      setTradeEntryCount(crypto.randomUUID());
     }
-  };
-
-  useEffect(() => {
-    console.log(tradeDataObject);
-    // console.log(numberOfTrades);
-    // console.log(strategyTag);
-    // console.log(activeTradeTag);
-  }, [tradeDataObject, numberOfTrades, strategyTag, activeTradeTag]);
-
-  const handleClick = (index) => {
-    setActiveButton(index);
   };
 
   const handleTradeBtnClick = (index) => {
@@ -459,7 +431,6 @@ function AddTrade() {
         await updateDoc(doc(db, "users", userAuthState?.email), {
           tradeWritableDoc: nextDocName,
         });
-        console.log("wrote");
       }
     }
   };
@@ -470,6 +441,7 @@ function AddTrade() {
     setStart(false);
     setTradeDataObject({});
 
+    setTradeEntryCount(null); //
     setActiveButton("");
     setActiveTradeButton("");
     setTempToRefreshPnl("");
@@ -488,7 +460,7 @@ function AddTrade() {
     >
       <div
         id="addTradeContainer"
-        className="card fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-scroll bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
+        className="card fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-auto bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
       >
         <button
           onClick={() => {
@@ -546,10 +518,10 @@ function AddTrade() {
                 className="btn w-32 bg-primary text-lg hover:bg-secondary"
                 onClick={() => {
                   countEntries();
-                  setStart(true);
                   if (tradeEntryCount) {
+                    setStart(true);
                     let updatedObject = {
-                      [tradeEntryCount]: {},
+                      [tradeEntryCount]: { entryUid: tradeEntryCount },
                     };
                     setTradeDataObject(updatedObject);
                   }
@@ -1012,19 +984,34 @@ function AddTrade() {
                 )}
               </div>
             )}
-          {tradeDataObject[tradeEntryCount] &&
-            tradeEntryCount >= 0 &&
-            strategyTag && (
-              <div
-                className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"
-                onClick={() => {
-                  setSaveTradePop(true);
-                  checkSizeAndAddDoc();
-                }}
-              >
-                Confirm
-              </div>
-            )}
+          {tradeDataObject[tradeEntryCount] && strategyTag && (
+            <textarea
+              className="textarea textarea-bordered mt-3 h-52 w-96"
+              name="message"
+              id="noteForDay"
+              cols="30"
+              rows="10"
+              placeholder="Note for the day: For example....Reason to enter and exit, mistakes, learnings, improvements, etc."
+              maxLength={1000}
+              onChange={(e) => {
+                let note = e.target.value;
+                let updatedObject = Object.assign({}, tradeDataObject);
+                updatedObject[tradeEntryCount]["note"] = note;
+                setTradeDataObject(updatedObject);
+              }}
+            ></textarea>
+          )}
+          {tradeDataObject[tradeEntryCount] && strategyTag && (
+            <div
+              className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"
+              onClick={() => {
+                setSaveTradePop(true);
+                checkSizeAndAddDoc();
+              }}
+            >
+              Confirm
+            </div>
+          )}
         </div>
       </div>
     </div>
