@@ -12,7 +12,7 @@ function DataTable() {
     useContext(DataContext);
   const [allObject, setAllObject] = useState();
   const [tradeInfoKey, setTradeInfoKey] = useState("");
-  const [displaySlice, setDisplaySlice] = useState(10);
+  const [displaySlice, setDisplaySlice] = useState(-10);
 
   const calculateROI = (totalPnl, totalInvestment) => {
     if (totalInvestment === 0) return "N/A"; // Handle division by zero
