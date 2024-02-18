@@ -44,6 +44,14 @@ function DataTable() {
   };
 
   let trailingPnl = 0;
+  useEffect(() => {
+    allObject?.forEach((key) => {
+      userData?.strategytags?.forEach((element) => {
+        let stat = element;
+        trailingPnl += key[stat]?.pnl || 0;
+      });
+    });
+  }, [allObject]);
 
   const deleteEntry = async (entryId) => {
     // const docRef = doc(db, "users", userAuthState.email, "userTradeData");
@@ -85,7 +93,7 @@ function DataTable() {
             </tr>
           </thead>
           <tbody className="text-center">
-            {allObject?.map((key) => {
+            {allObject?.slice(-10).map((key) => {
               let total = userData?.strategytags?.reduce((acc, element) => {
                 let stat = element;
                 return acc + (key[stat]?.pnl || 0); // Use optional chaining and default value to handle undefined or null
