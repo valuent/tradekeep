@@ -5,6 +5,7 @@ import { setDoc, updateDoc, doc, deleteField } from "firebase/firestore";
 import "../../style/app.css";
 
 import TradeInfo from "../tradeinfocomp/TradeInfo";
+import EditEntry from "../editentrycomp/EditEntry";
 
 function DataTable() {
   const { userData, userAuthState, siteDate, allData } =
@@ -58,10 +59,16 @@ function DataTable() {
     setTradeInfoKey(trade);
     document.getElementById("tradeInfoContainer").style.top = "10%";
   };
+
+  const editTradeInfo = (trade) => {
+    setTradeInfoKey(trade);
+    document.getElementById("editEntryContainer").style.top = "10%";
+  };
   return (
     <div className="flex  items-center justify-center ">
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
+      <EditEntry entryData={tradeInfoKey} />
       <div className="mt-6 max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">
@@ -136,7 +143,7 @@ function DataTable() {
                     </td>
                   )}
                   {prevTrailingPnl > trailingPnl && (
-                    <td className="flex items-center justify-center text-center text-red-400">
+                    <td className=" text-center text-red-400">
                       <div className="flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +195,7 @@ function DataTable() {
                       onClick={() => {
                         // deleteRowData(key);
 
-                        getTradeInfo(key);
+                        editTradeInfo(key);
                         // deleteEntry(key.entryUid);
                       }}
                     >

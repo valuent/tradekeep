@@ -27,7 +27,7 @@ function TradeInfo({ tradeKey, userData }) {
       {tradeKey && userData && (
         <div
           id="tradeInfoContainer"
-          className="card fixed left-0 right-0 top-20 z-50 m-auto h-5/6 overflow-y-auto bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
+          className="card fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-auto bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
         >
           <button
             onClick={() => {
