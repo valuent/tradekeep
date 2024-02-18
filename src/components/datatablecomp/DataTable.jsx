@@ -12,6 +12,7 @@ function DataTable() {
     useContext(DataContext);
   const [allObject, setAllObject] = useState();
   const [tradeInfoKey, setTradeInfoKey] = useState("");
+  const [displaySlice, setDisplaySlice] = useState(10);
 
   const calculateROI = (totalPnl, totalInvestment) => {
     if (totalInvestment === 0) return "N/A"; // Handle division by zero
@@ -73,11 +74,24 @@ function DataTable() {
     document.getElementById("editEntryContainer").style.top = "10%";
   };
   return (
-    <div className="flex  items-center justify-center ">
+    <div className="flex flex-col items-center justify-center ">
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
       <EditEntry entryData={tradeInfoKey} />
-      <div className="mt-6 max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
+      <div className=" max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
+        <select
+          className="select select-bordered select-sm mb-1 w-40 max-w-xs"
+          onChange={(e) => {
+            setDisplaySlice(e.target.value);
+          }}
+        >
+          <option value={-10} selected>
+            Show latest 10
+          </option>
+          <option value={-20}>Show latest 20</option>
+          <option value={-50}>Show latest 50</option>
+          <option value={0}>Show all</option>
+        </select>
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">
             <tr key="1" className=" bg-base-200">
@@ -93,7 +107,7 @@ function DataTable() {
             </tr>
           </thead>
           <tbody className="text-center">
-            {allObject?.slice(-10).map((key) => {
+            {allObject?.slice(displaySlice).map((key) => {
               let total = userData?.strategytags?.reduce((acc, element) => {
                 let stat = element;
                 return acc + (key[stat]?.pnl || 0); // Use optional chaining and default value to handle undefined or null
