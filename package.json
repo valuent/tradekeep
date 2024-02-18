@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.23.3",
     "dotenv": "^16.4.1",
     "firebase": "^10.7.2",
     "lucide-react": "^0.324.0",
