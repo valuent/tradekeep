@@ -40,10 +40,6 @@ function DataTable() {
     processTradeData();
   }, [allData]);
 
-  const openUpdateTrade = () => {
-    document.getElementById("UpdateTradeContainer").top = "10%";
-  };
-
   let trailingPnl = 0;
   useEffect(() => {
     allObject?.forEach((key) => {
@@ -78,7 +74,7 @@ function DataTable() {
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
       <EditEntry entryData={tradeInfoKey} />
-      <div className="m-2 w-11/12 ">
+      <div className="mb-0.5 w-11/12 ">
         <select
           className="select select-bordered select-sm sticky w-40 max-w-xs self-start"
           onChange={(e) => {
