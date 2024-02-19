@@ -85,9 +85,7 @@ function DataTable() {
             setDisplaySlice(e.target.value);
           }}
         >
-          <option value={-10} selected>
-            Show latest 10
-          </option>
+          <option value={-10}>Show latest 10</option>
           <option value={-20}>Show latest 20</option>
           <option value={-50}>Show latest 50</option>
           <option value={0}>Show all</option>

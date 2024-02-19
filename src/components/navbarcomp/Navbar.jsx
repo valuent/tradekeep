@@ -1,21 +1,12 @@
 import React, { useState } from "react";
-
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../utils/config";
 import logo from "../../assets/logosvg.svg";
 
 function Navbar() {
   const [userEmail, setUserEmail] = useState({});
-  const [visible, setVisible] = useState(true);
   onAuthStateChanged(auth, (currentUser) => {
     setUserEmail(currentUser);
-    closeRegister();
-    closeLogin();
-    if (userEmail?.email) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
   });
 
   const closeLogin = () => {
@@ -79,7 +70,7 @@ function Navbar() {
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </label>
-      {!visible && (
+      {userEmail && userEmail?.email && (
         <div className="flex-none">
           <div tabIndex="0" role="button" className="avatar placeholder">
             {/* <div className="initialOfUser absolute bottom-0 left-0 right-0 m-auto">
@@ -96,7 +87,7 @@ function Navbar() {
           </div>
         </div>
       )}
-      {visible && (
+      {!userEmail?.email && (
         <div className="join join-vertical lg:join-horizontal">
           <button
             className="btn join-item"

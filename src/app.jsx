@@ -32,7 +32,7 @@ function App() {
   const [userData, setUserData] = useState();
   const [allData, setAllData] = useState({});
   const [sizeCount, setSizeCount] = useState();
-  const [userAuthState, setUserAuthState] = useState("");
+  const [userAuthState, setUserAuthState] = useState();
 
   onAuthStateChanged(auth, (currentUser) => {
     setUserAuthState(currentUser);
@@ -80,17 +80,24 @@ function App() {
       <DataContext.Provider
         value={{ userData, userAuthState, siteDate, allData }}
       >
-        {/* <AddTradeDesign /> */}
-
-        <AddTrade />
-        <AddStrategy />
-        <Profile />
-        <Register />
-        <Login />
         <Navbar />
-        <TopBar />
 
-        <DataTable />
+        {userAuthState && userAuthState?.email && (
+          <>
+            <AddTrade />
+            <AddStrategy />
+            <Profile />
+            <TopBar />
+            <DataTable />
+          </>
+        )}
+
+        {!userAuthState?.email && (
+          <>
+            <Register />
+            <Login />
+          </>
+        )}
       </DataContext.Provider>
     </div>
   );
