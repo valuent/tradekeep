@@ -30,7 +30,7 @@ function Profile() {
 
   useEffect(() => {
     const setExpired = async () => {
-      if (daysTillExpiry < 1 && userAuthState?.email) {
+      if (parseInt(daysTillExpiry) < 1 && userAuthState?.email) {
         await setDoc(
           doc(db, "users", userAuthState?.email),
           {
@@ -42,7 +42,7 @@ function Profile() {
       }
     };
     setExpired();
-  }, [daysTillExpiry, userAuthState?.email]);
+  }, [daysTillExpiry]);
 
   return (
     <div

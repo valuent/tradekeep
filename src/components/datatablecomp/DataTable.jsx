@@ -78,9 +78,9 @@ function DataTable() {
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
       <EditEntry entryData={tradeInfoKey} />
-      <div className=" max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
+      <div className="m-2 w-11/12 ">
         <select
-          className="select select-bordered select-sm mb-1 w-40 max-w-xs"
+          className="select select-bordered select-sm sticky w-40 max-w-xs self-start"
           onChange={(e) => {
             setDisplaySlice(e.target.value);
           }}
@@ -90,6 +90,8 @@ function DataTable() {
           <option value={-50}>Show latest 50</option>
           <option value={0}>Show all</option>
         </select>
+      </div>
+      <div className="max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">
             <tr key="1" className=" bg-base-200">
