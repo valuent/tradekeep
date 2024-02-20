@@ -33,9 +33,9 @@ function TopBar() {
     document.getElementById("addCapitalContainer").style.top = "10%";
   };
   return (
-    <div className="flex flex-col justify-between sm:flex-row">
+    <div className="flex flex-col justify-between md:flex-row">
       <AddCapital />
-      <ul className="menu menu-horizontal m-2 rounded-box bg-primary shadow-md">
+      <ul className="menu menu-horizontal m-2 flex items-center justify-center rounded-box bg-primary shadow-md">
         <li>
           <a className="hover:bg-primary0">
             <svg
@@ -131,17 +131,17 @@ function TopBar() {
           </li>
         ) : null}
       </ul>
-      <div className="join m-2 mr-2 mt-2 flex w-full justify-center drop-shadow-md sm:w-fit">
+      <div className="join m-2 mr-2 mt-2 flex w-full justify-center drop-shadow-md md:w-fit">
         {!userData?.userInfo?.capital ? (
           <button
-            className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
+            className="btn join-item  border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
             onClick={openAddCapital}
           >
             Add Capital
           </button>
         ) : (
           <button
-            className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
+            className="btn join-item  border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
             onClick={openAddCapital}
           >
             Edit Capital
@@ -149,14 +149,14 @@ function TopBar() {
         )}
 
         <button
-          className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
+          className="btn join-item  border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
           onClick={openAddStrategy}
         >
           Add Strategy
         </button>
 
         <button
-          className="btn join-item w-5/12 border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
+          className="btn join-item  border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"
           onClick={openAddTrade}
         >
           Add Trade
