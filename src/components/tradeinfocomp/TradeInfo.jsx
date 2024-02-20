@@ -113,7 +113,7 @@ function TradeInfo({ tradeKey, userData }) {
                           .tradeType == "Directional"
                       ) {
                         return (
-                          <div className="card m-3 h-80 w-80 bg-base-100 shadow-xl ">
+                          <div className="card m-3 h-80 w-80 bg-base-100 shadow ">
                             <div className="justify-left card-body  flex flex-col items-start text-xl">
                               <div className="name">
                                 Name:{" "}
@@ -183,7 +183,7 @@ function TradeInfo({ tradeKey, userData }) {
                           .tradeType != "Directional"
                       ) {
                         return (
-                          <div className="card m-3 h-80 w-80 bg-base-100 shadow-xl ">
+                          <div className="card m-3 h-80 w-80 bg-base-100 shadow">
                             <div className="justify-left card-body  flex flex-col items-start text-xl">
                               <div className="name">
                                 Name:{" "}
@@ -235,8 +235,18 @@ function TradeInfo({ tradeKey, userData }) {
           )}
           {currentStrat && (
             <>
-              <div className="title mt-4">Note for this entry</div>
-              <div className="card w-96 bg-base-100 shadow-xl">
+              <div className="stats mt-3 shadow">
+                <div className="stat">
+                  <div className="stat-title text-sm">Charges</div>
+                  <div className="stat-value h-full overflow-hidden text-3xl">
+                    <span className=" text-2xl text-red-400">
+                      {tradeKey.charges}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="title">Note for this entry</div>
+              <div className="card w-96 bg-base-100 shadow">
                 <div className="card-body">
                   <p className="mt">{tradeKey?.note}</p>
                 </div>
