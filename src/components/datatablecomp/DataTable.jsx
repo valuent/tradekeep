@@ -7,7 +7,7 @@ import "../../style/app.css";
 import TradeInfo from "../tradeinfocomp/TradeInfo";
 import EditEntry from "../editentrycomp/EditEntry";
 
-function DataTable() {
+function DataTable({ sliceValue }) {
   const { userData, userAuthState, siteDate, allData } =
     useContext(DataContext);
   const [allObject, setAllObject] = useState();
@@ -74,20 +74,8 @@ function DataTable() {
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
       <EditEntry entryData={tradeInfoKey} />
-      <div className="mb-0.5 w-11/12 ">
-        <select
-          className="select select-bordered select-sm sticky w-40 max-w-xs self-start"
-          onChange={(e) => {
-            setDisplaySlice(e.target.value);
-          }}
-        >
-          <option value={-10}>Show latest 10</option>
-          <option value={-20}>Show latest 20</option>
-          <option value={-50}>Show latest 50</option>
-          <option value={0}>Show all</option>
-        </select>
-      </div>
-      <div className="max-h-[75vh] w-11/12 overflow-x-auto overflow-y-auto">
+      <div className="mb-0.5 w-11/12 "></div>
+      <div className="mt-5 max-h-[76vh] w-11/12 overflow-x-auto overflow-y-auto">
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">
             <tr key="1" className=" bg-base-200">
@@ -103,7 +91,7 @@ function DataTable() {
             </tr>
           </thead>
           <tbody className="text-center">
-            {allObject?.slice(displaySlice).map((key) => {
+            {allObject?.slice(sliceValue).map((key) => {
               let total = userData?.strategytags?.reduce((acc, element) => {
                 let stat = element;
                 return acc + (key[stat]?.pnl || 0); // Use optional chaining and default value to handle undefined or null

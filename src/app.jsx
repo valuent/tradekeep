@@ -34,6 +34,8 @@ function App() {
   const [sizeCount, setSizeCount] = useState();
   const [userAuthState, setUserAuthState] = useState();
 
+  // Function to handle the selected data change
+
   onAuthStateChanged(auth, (currentUser) => {
     setUserAuthState(currentUser);
   });
@@ -88,7 +90,6 @@ function App() {
             <AddStrategy />
             <Profile />
             <TopBar />
-            <DataTable />
           </>
         )}
 

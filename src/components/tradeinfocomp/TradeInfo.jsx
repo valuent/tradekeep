@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 function TradeInfo({ tradeKey, userData }) {
   const [currentStrat, setCurrentStrat] = useState();
-  const [numberOfTradesToDisplay, setNumberOfTradesToDisplay] = useState();
+  const [numberOfTradesToDisplay, setNumberOfTradesToDisplay] = useState(-10);
 
   const closeInfoTrade = () => {
     document.getElementById("tradeInfoContainer").style.top = "100%";

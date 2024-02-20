@@ -550,6 +550,11 @@ function AddTrade() {
               />
             </>
           )}
+          <div className="title mt-3 text-lg">Brokerage and charges</div>
+          <input
+            type="number"
+            className="input input-bordered max-w-xs text-lg"
+          />
           {tradeDataObject[tradeEntryCount] &&
             tradeDataObject[tradeEntryCount]?.["date"] &&
             tradeDataObject[tradeEntryCount]?.["date"] != "" && (
@@ -754,7 +759,7 @@ function AddTrade() {
             activeTradeTag &&
             numberOfTrades.length > 0 &&
             activeTradeButton && (
-              <div className="card flex items-center justify-center bg-base-200 px-10 pb-10">
+              <div className="card flex items-center justify-center bg-base-100 px-10 pb-10">
                 <div className="title mb-3 mt-3 text-lg">
                   {activeTradeTag
                     .split("_")
