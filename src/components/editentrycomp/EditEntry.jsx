@@ -38,6 +38,11 @@ function EditEntry({ entryData }) {
       document.getElementById("noteForDay").value = entryData.note;
     }
   }, [strategyTag, tradeDataObject, tradeEntryCount]);
+  useEffect(() => {
+    if (document.getElementById("brokerage")) {
+      document.getElementById("brokerage").value = entryData.charges;
+    }
+  }, [strategyTag, tradeDataObject, tradeEntryCount]);
 
   //   useEffect(() => {
   //     console.log(tradeDataObject);
@@ -1056,23 +1061,39 @@ function EditEntry({ entryData }) {
                 )}
               </div>
             )}
-          {tradeDataObject[tradeEntryCount] && strategyTag && (
-            <textarea
-              className="textarea textarea-bordered mt-3 h-52 w-96"
-              name="message"
-              id="noteForDay"
-              cols="30"
-              rows="10"
-              placeholder="Note for the day: For example....Reason to enter and exit, mistakes, learnings, improvements, etc."
-              maxLength={1000}
-              onChange={(e) => {
-                let note = e.target.value;
-                let updatedObject = Object.assign({}, tradeDataObject);
-                updatedObject[tradeEntryCount]["note"] = note;
-                setTradeDataObject(updatedObject);
-              }}
-            ></textarea>
-          )}
+          {tradeDataObject[tradeEntryCount] &&
+            tradeDataObject[tradeEntryCount]["date"] && (
+              <>
+                <div className="title text-md mt-3">Charges for the day</div>
+                <input
+                  type="number"
+                  className="input input-bordered max-w-32 text-lg"
+                  placeholder=""
+                  id="brokerage"
+                  onChange={(e) => {
+                    let note = e.target.value;
+                    let updatedObject = Object.assign({}, tradeDataObject);
+                    updatedObject[tradeEntryCount]["charges"] = note;
+                    setTradeDataObject(updatedObject);
+                  }}
+                />
+                <textarea
+                  className="textarea textarea-bordered mt-3 h-52 w-96"
+                  name="message"
+                  id="noteForDay"
+                  cols="30"
+                  rows="10"
+                  placeholder="Note for the day: For example....Reason to enter and exit, mistakes, learnings, improvements, etc."
+                  maxLength={1000}
+                  onChange={(e) => {
+                    let note = e.target.value;
+                    let updatedObject = Object.assign({}, tradeDataObject);
+                    updatedObject[tradeEntryCount]["note"] = note;
+                    setTradeDataObject(updatedObject);
+                  }}
+                ></textarea>
+              </>
+            )}
           {tradeDataObject[tradeEntryCount] && (
             <div
               className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"

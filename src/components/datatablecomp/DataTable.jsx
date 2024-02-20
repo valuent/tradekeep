@@ -126,50 +126,42 @@ function DataTable({ sliceValue }) {
                     {roi}
                   </td>
 
-                  {prevTrailingPnl < trailingPnl && (
-                    <td className=" text-center text-green-400">
-                      <div className="flex items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="h-4 w-4"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                          />
-                        </svg>
+                  <td
+                    className={
+                      trailingPnl == prevTrailingPnl
+                        ? "text-center text-neutral-400"
+                        : prevTrailingPnl < trailingPnl
+                          ? "text-center text-green-400"
+                          : "text-center text-red-400"
+                    }
+                  >
+                    <div className="flex items-center justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="h-4 w-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d={
+                            trailingPnl == prevTrailingPnl
+                              ? null
+                              : prevTrailingPnl < trailingPnl
+                                ? "m4.5 15.75 7.5-7.5 7.5 7.5"
+                                : "m19.5 8.25-7.5 7.5-7.5-7.5"
+                          }
+                        />
+                      </svg>
+                      {/* ? "m4.5 15.75 7.5-7.5 7.5 7.5" : "m19.5 8.25-7.5
+                      7.5-7.5-7.5" */}
+                      {trailingPnl}
+                    </div>
+                  </td>
 
-                        {trailingPnl}
-                      </div>
-                    </td>
-                  )}
-                  {prevTrailingPnl > trailingPnl && (
-                    <td className=" text-center text-red-400">
-                      <div className="flex items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="h-4 w-4"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                          />
-                        </svg>
-
-                        {trailingPnl}
-                      </div>
-                    </td>
-                  )}
                   <td>
                     <button
                       className="text-light tra rounded bg-primary p-2 transition-all duration-200 hover:bg-secondary"

@@ -550,11 +550,7 @@ function AddTrade() {
               />
             </>
           )}
-          <div className="title mt-3 text-lg">Brokerage and charges</div>
-          <input
-            type="number"
-            className="input input-bordered max-w-xs text-lg"
-          />
+
           {tradeDataObject[tradeEntryCount] &&
             tradeDataObject[tradeEntryCount]?.["date"] &&
             tradeDataObject[tradeEntryCount]?.["date"] != "" && (
@@ -991,34 +987,50 @@ function AddTrade() {
                 )}
               </div>
             )}
-          {tradeDataObject[tradeEntryCount] && strategyTag && (
-            <textarea
-              className="textarea textarea-bordered mt-3 h-52 w-96"
-              name="message"
-              id="noteForDay"
-              cols="30"
-              rows="10"
-              placeholder="Note for the day: For example....Reason to enter and exit, mistakes, learnings, improvements, etc."
-              maxLength={1000}
-              onChange={(e) => {
-                let note = e.target.value;
-                let updatedObject = Object.assign({}, tradeDataObject);
-                updatedObject[tradeEntryCount]["note"] = note;
-                setTradeDataObject(updatedObject);
-              }}
-            ></textarea>
-          )}
-          {tradeDataObject[tradeEntryCount] && strategyTag && (
-            <div
-              className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"
-              onClick={() => {
-                setSaveTradePop(true);
-                checkSizeAndAddDoc();
-              }}
-            >
-              Confirm
-            </div>
-          )}
+          {tradeDataObject[tradeEntryCount] &&
+            tradeDataObject[tradeEntryCount]["date"] && (
+              <>
+                <div className="title text-md mt-3">Charges for the day</div>
+                <input
+                  type="number"
+                  className="input input-bordered max-w-32 text-lg"
+                  placeholder=""
+                  onChange={(e) => {
+                    let note = e.target.value;
+                    let updatedObject = Object.assign({}, tradeDataObject);
+                    updatedObject[tradeEntryCount]["charges"] = note;
+                    setTradeDataObject(updatedObject);
+                  }}
+                />
+                <textarea
+                  className="textarea textarea-bordered mt-3 h-52 w-96"
+                  name="message"
+                  id="noteForDay"
+                  cols="30"
+                  rows="10"
+                  placeholder="Note for the day: For example....Reason to enter and exit, mistakes, learnings, improvements, etc."
+                  maxLength={1000}
+                  onChange={(e) => {
+                    let note = e.target.value;
+                    let updatedObject = Object.assign({}, tradeDataObject);
+                    updatedObject[tradeEntryCount]["note"] = note;
+                    setTradeDataObject(updatedObject);
+                  }}
+                ></textarea>
+              </>
+            )}
+          {tradeDataObject[tradeEntryCount] &&
+            tradeDataObject[tradeEntryCount]["date"] && (
+              <div
+                className="hover btn mt-6 border-0 bg-primary hover:bg-secondary"
+                onClick={() => {
+                  setSaveTradePop(true);
+                  checkSizeAndAddDoc();
+                }}
+              >
+                Confirm
+              </div>
+            )}
         </div>
       </div>
     </div>
