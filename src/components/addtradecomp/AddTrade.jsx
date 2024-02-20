@@ -463,6 +463,7 @@ function AddTrade() {
         className="fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-auto rounded-xl bg-base-200 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
       >
         <button
+          name="close"
           onClick={() => {
             closeAddTrade();
           }}
@@ -490,6 +491,7 @@ function AddTrade() {
               Are you sure you want to save the entered data?
               <div className="card-actions justify-end">
                 <button
+                  name="confirm"
                   className="btn border-0 bg-primary hover:border-0 hover:bg-secondary"
                   onClick={() => {
                     saveTradeDataToDb();

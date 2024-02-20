@@ -59,6 +59,7 @@ function AddStrategy() {
             <div className="card-actions justify-end">
               <button
                 className="btn border-0 bg-primary hover:border-0 hover:bg-secondary"
+                name="cancel"
                 onClick={() => {
                   closeConfirmPopDelete();
                 }}
@@ -67,6 +68,7 @@ function AddStrategy() {
               </button>
               <button
                 className="btn btn-ghost"
+                name="confirm"
                 onClick={() => {
                   closeConfirmPop();
                 }}
@@ -160,6 +162,7 @@ function AddStrategy() {
             <button
               className="btn bg-primary hover:border-secondary hover:bg-secondary"
               onClick={addStratInArray}
+              name="Add Startegy"
             >
               Add Strategy
             </button>
