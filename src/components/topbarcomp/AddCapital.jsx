@@ -35,7 +35,7 @@ function AddCapital() {
 
   return (
     <div
-      className="card fixed left-0 right-0 top-full z-50 m-auto w-96 bg-base-300 text-neutral-content transition-all duration-100"
+      className="card fixed left-0 right-0 top-full z-50 m-auto w-96 bg-base-200  transition-all duration-100"
       id="addCapitalContainer"
     >
       <div className="card-body items-center text-center">

@@ -493,7 +493,7 @@ function EditEntry({ entryData }) {
     >
       <div
         id="editEntryContainer"
-        className="fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-auto rounded-xl bg-base-300 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
+        className="fixed left-0 right-0 top-full z-50 m-auto h-5/6 overflow-y-auto rounded-xl bg-base-200 transition-all duration-100 ease-in-out md:w-9/12 lg:w-8/12"
       >
         <button
           onClick={() => {

@@ -47,7 +47,7 @@ function AddStrategy() {
 
   return (
     <div
-      className="fixed top-full z-50  h-full w-full transition-all duration-100 ease-in-out "
+      className="fixed top-full z-50 h-full  w-full  transition-all duration-100 ease-in-out "
       id="addStratContainer"
     >
       {strategyToDelete && (
@@ -77,7 +77,7 @@ function AddStrategy() {
           </div>
         </div>
       )}
-      <div className="card left-0 right-0 m-auto w-11/12 bg-base-300  md:w-9/12 lg:w-8/12">
+      <div className="card left-0 right-0 m-auto w-11/12 bg-base-200  md:w-9/12 lg:w-8/12">
         <button
           onClick={closeAddStrategy}
           className="btn btn-square btn-sm absolute right-3 top-3 border-primary bg-primary hover:border-red-500 hover:bg-red-500 "
