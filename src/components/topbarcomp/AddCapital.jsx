@@ -23,9 +23,19 @@ function AddCapital() {
     setCapital(null);
   };
 
+  useEffect(() => {
+    if (
+      userData?.userInfo?.capital &&
+      document.getElementById("capitalInput")
+    ) {
+      document.getElementById("capitalInput").value =
+        userData?.userInfo?.capital;
+    }
+  }, [userData]);
+
   return (
     <div
-      className="card fixed left-0 right-0 top-full z-50 m-auto w-96 bg-neutral text-neutral-content transition-all duration-100"
+      className="card fixed left-0 right-0 top-full z-50 m-auto w-96 bg-base-300 text-neutral-content transition-all duration-100"
       id="addCapitalContainer"
     >
       <div className="card-body items-center text-center">
@@ -55,6 +65,7 @@ function AddCapital() {
           type="number"
           step={0.05}
           placeholder="Type here"
+          id="capitalInput"
           className="input input-bordered w-full max-w-xs"
           onChange={(e) => {
             setCapital(e.target.value);
