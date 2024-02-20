@@ -110,7 +110,7 @@ function DataTable() {
               }, 0);
               let prevTrailingPnl = trailingPnl;
               trailingPnl = prevTrailingPnl + total;
-              let totalInvestment = 7000000; // Total capital invested for ROI calculation
+              let totalInvestment = userData?.userInfo?.capital; // Total capital invested for ROI calculation
               let roi = calculateROI(total, totalInvestment); // Calculate ROI// Initialize accumulator with 0
               return (
                 <tr key={key.id} className="font-bold">
