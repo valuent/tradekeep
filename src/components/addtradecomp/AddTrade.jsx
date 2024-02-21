@@ -533,7 +533,7 @@ function AddTrade() {
               </button>
             </>
           )}
-          {start && tradeDataObject[tradeEntryCount] && (
+          {tradeDataObject[tradeEntryCount] && start && (
             <>
               <div className="title text-lg">Add Date</div>
               <input
