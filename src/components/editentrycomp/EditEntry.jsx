@@ -752,7 +752,7 @@ function EditEntry({ entryData }) {
               </div>
               <input
                 type="number"
-                class="input input-bordered max-w-xs text-lg"
+                className="input input-bordered max-w-xs text-lg"
                 id="numberOfTrades"
                 step={1}
                 pattern="[0-9]*"
@@ -965,7 +965,7 @@ function EditEntry({ entryData }) {
                 )}
                 {tradeType == "Directional" && tradeDirection && (
                   <label className="input input-bordered my-2 flex w-full items-center gap-2">
-                    Entry Price
+                    Entry
                     <input
                       type="number"
                       name=""
@@ -987,7 +987,7 @@ function EditEntry({ entryData }) {
                 )}
                 {tradeType == "Directional" && tradeDirection && (
                   <label className="input input-bordered my-2 flex w-full items-center gap-2">
-                    Exit Price
+                    Exit
                     <input
                       type="number"
                       name=""

@@ -109,118 +109,131 @@ function TradeInfo({ tradeKey, userData }) {
                     {numberOfTradesToDisplay.map((count) => {
                       let tradeName = "trade_" + count;
                       if (
-                        tradeKey?.[currentStrat]?.detail?.[tradeName]
-                          .tradeType == "Directional"
+                        tradeKey?.[currentStrat]?.detail?.[tradeName] &&
+                        tradeKey?.[currentStrat]?.detail?.[tradeName]?.tradeType
                       ) {
-                        return (
-                          <div className="card m-3 h-80 w-80 bg-base-100 shadow ">
-                            <div className="justify-left card-body  flex flex-col items-start text-xl">
-                              <div className="name">
-                                Name:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .scripName
-                                }
-                              </div>
-                              <div className="tradeType">
-                                Type:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .tradeType
-                                }
-                              </div>
-                              <div className="tradeDirection">
-                                Direction:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .direction
-                                }
-                              </div>
-                              <div className="tradeDirection">
-                                Qty:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .quantity
-                                }
-                              </div>
-                              <div className="tradeDirection">
-                                Entry Price:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .entryPrice
-                                }
-                              </div>
-                              <div className="tradeDirection">
-                                Exit Price:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .exitPrice
-                                }
-                              </div>
-                              <div className="tradePnl">
-                                PnL :{" "}
-                                <span
-                                  className={
-                                    tradeKey?.[currentStrat]?.detail?.[
-                                      tradeName
-                                    ].pnl > 0
-                                      ? "text-green-400"
-                                      : "text-red-400"
-                                  }
-                                >
+                        if (
+                          tradeKey?.[currentStrat]?.detail?.[tradeName]
+                            .tradeType == "Directional"
+                        ) {
+                          return (
+                            <div className="card m-3 h-80 w-80 bg-base-100 shadow ">
+                              <div className="justify-left card-body  flex flex-col items-start text-xl">
+                                <div className="name">
+                                  Name:{" "}
                                   {
                                     tradeKey?.[currentStrat]?.detail?.[
                                       tradeName
-                                    ].pnl
+                                    ].scripName
                                   }
-                                </span>
+                                </div>
+                                <div className="tradeType">
+                                  Type:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].tradeType
+                                  }
+                                </div>
+                                <div className="tradeDirection">
+                                  Direction:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].direction
+                                  }
+                                </div>
+                                <div className="tradeDirection">
+                                  Qty:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].quantity
+                                  }
+                                </div>
+                                <div className="tradeDirection">
+                                  Entry:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].entryPrice
+                                  }
+                                </div>
+                                <div className="tradeDirection">
+                                  Exit:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].exitPrice
+                                  }
+                                </div>
+                                <div className="tradePnl">
+                                  PnL:{" "}
+                                  <span
+                                    className={
+                                      tradeKey?.[currentStrat]?.detail?.[
+                                        tradeName
+                                      ].pnl > 0
+                                        ? "text-green-400"
+                                        : "text-red-400"
+                                    }
+                                  >
+                                    {
+                                      tradeKey?.[currentStrat]?.detail?.[
+                                        tradeName
+                                      ].pnl
+                                    }
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      } else if (
-                        tradeKey?.[currentStrat]?.detail?.[tradeName]
-                          .tradeType != "Directional"
-                      ) {
-                        return (
-                          <div className="card m-3 h-80 w-80 bg-base-100 shadow">
-                            <div className="justify-left card-body  flex flex-col items-start text-xl">
-                              <div className="name">
-                                Name:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .scripName
-                                }
-                              </div>
-                              <div className="tradeType">
-                                Type:{" "}
-                                {
-                                  tradeKey?.[currentStrat]?.detail?.[tradeName]
-                                    .tradeType
-                                }
-                              </div>
+                          );
+                        } else if (
+                          tradeKey?.[currentStrat]?.detail?.[tradeName]
+                            .tradeType != "Directional"
+                        ) {
+                          return (
+                            <div className="card m-3 h-80 w-80 bg-base-100 shadow">
+                              <div className="justify-left card-body  flex flex-col items-start text-xl">
+                                <div className="name">
+                                  Name:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].scripName
+                                  }
+                                </div>
+                                <div className="tradeType">
+                                  Type:{" "}
+                                  {
+                                    tradeKey?.[currentStrat]?.detail?.[
+                                      tradeName
+                                    ].tradeType
+                                  }
+                                </div>
 
-                              <div className="tradeDirection">
-                                PnL :{" "}
-                                <span
-                                  className={
-                                    tradeKey?.[currentStrat]?.detail?.[
-                                      tradeName
-                                    ].pnl > 0
-                                      ? "text-green-400"
-                                      : "text-red-400"
-                                  }
-                                >
-                                  {
-                                    tradeKey?.[currentStrat]?.detail?.[
-                                      tradeName
-                                    ].pnl
-                                  }
-                                </span>
+                                <div className="tradeDirection">
+                                  PnL :{" "}
+                                  <span
+                                    className={
+                                      tradeKey?.[currentStrat]?.detail?.[
+                                        tradeName
+                                      ].pnl > 0
+                                        ? "text-green-400"
+                                        : "text-red-400"
+                                    }
+                                  >
+                                    {
+                                      tradeKey?.[currentStrat]?.detail?.[
+                                        tradeName
+                                      ].pnl
+                                    }
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
+                          );
+                        }
                       }
                     })}
                   </div>

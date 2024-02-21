@@ -872,7 +872,7 @@ function AddTrade() {
                   <label className="input input-bordered my-2 flex w-full items-center gap-2">
                     Qty
                     <input
-                      className=" grow bg-base-100"
+                      className="grow bg-base-100"
                       type="number"
                       id="quantity"
                       step={1}
@@ -891,7 +891,7 @@ function AddTrade() {
                 )}
                 {tradeType == "Directional" && tradeDirection && (
                   <label className="input input-bordered my-2 flex w-full items-center gap-2">
-                    Entry Price
+                    Entry
                     <input
                       type="number"
                       name=""
@@ -913,7 +913,7 @@ function AddTrade() {
                 )}
                 {tradeType == "Directional" && tradeDirection && (
                   <label className="input input-bordered my-2 flex w-full items-center gap-2">
-                    Exit Price
+                    Exit
                     <input
                       type="number"
                       name=""
