@@ -73,7 +73,7 @@ function Profile() {
 
           <h2 className="card-title">Profile</h2>
           <div className="avatar placeholder ">
-            <div className="w-16 rounded-full bg-neutral text-neutral-content">
+            <div className="w-16 rounded-full bg-neutral text-neutral-content shadow-sm">
               <span className="overflow-hidden text-3xl">
                 {userAuthState?.email?.charAt(0).toUpperCase()}
               </span>

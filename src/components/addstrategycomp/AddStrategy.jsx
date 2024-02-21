@@ -47,7 +47,7 @@ function AddStrategy() {
 
   return (
     <div
-      className="fixed top-full z-50 h-full  w-full  transition-all duration-100 ease-in-out "
+      className="fixed top-full z-50 h-full w-full transition-all duration-100 ease-in-out "
       id="addStratContainer"
     >
       {strategyToDelete && (

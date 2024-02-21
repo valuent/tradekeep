@@ -38,7 +38,7 @@ function TopBar() {
     <>
       <div className="flex flex-col justify-between lg:flex-row">
         <AddCapital />
-        <ul className="menu menu-horizontal m-2 flex items-center justify-center rounded-box bg-primary shadow-md [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-primary">
+        <ul className="menu menu-horizontal m-2 flex items-center justify-center rounded-box bg-primary shadow-sm [&_li>*:not(ul):not(.menu-title):not(details):active]:bg-primary">
           <li>
             <a className="hover:bg-primary">
               <svg
@@ -150,7 +150,7 @@ function TopBar() {
             </a>
           </li>
         </ul>
-        <div className="join m-2 mr-2 mt-2 flex w-full justify-center drop-shadow-md lg:w-fit">
+        <div className="join m-2 mr-2 mt-2 flex w-full justify-center border-0 drop-shadow-sm lg:w-fit">
           {!userData?.userInfo?.capital ? (
             <button
               className="btn join-item  border-primary bg-primary hover:border-secondary hover:bg-secondary sm:w-fit"

@@ -74,7 +74,7 @@ function DataTable({ sliceValue }) {
       {/* {tradeInfoKey && <TradeInfo />} */}
       <TradeInfo tradeKey={tradeInfoKey} userData={userData} />
       <EditEntry entryData={tradeInfoKey} />
-      <div className="mb-0.5 w-11/12 "></div>
+
       <div className="mt-5 max-h-[76vh] w-11/12 overflow-x-auto overflow-y-auto">
         <table className="table table-pin-rows table-pin-cols table-lg">
           <thead className="text-center text-sm ">

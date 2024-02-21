@@ -73,14 +73,16 @@ function Login() {
       {passResetFlag == false && (
         <div className="max- hero min-h-screen bg-base-200 bg-opacity-50">
           <div className="hero-content flex-col sm:w-4/5 lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
+            <div className=" text-center lg:text-left">
+              <h1 className="overflow-visible text-5xl font-bold">
+                Login now!
+              </h1>
               <p className="py-6">
                 Unleash your trading potential and gain unparalleled insights
                 with our analytics platform crafted for serious traders.
               </p>
             </div>
-            <div className="card w-full max-w-sm shrink-0 bg-base-100 shadow-2xl">
+            <div className="card w-full max-w-sm shrink-0 bg-base-100 shadow-md">
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
@@ -192,7 +194,9 @@ function Login() {
         <div className="max- hero min-h-screen bg-base-200 bg-opacity-50">
           <div className="hero-content flex-col sm:w-4/5 lg:flex-row-reverse">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Reset Password</h1>
+              <h1 className="overflow-visible text-5xl font-bold">
+                Reset Password
+              </h1>
               <p className="py-6">
                 Check Your E-Mail inbox to reset your password
               </p>
