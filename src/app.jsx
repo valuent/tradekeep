@@ -77,31 +77,33 @@ function App() {
   // }, [allData]);
 
   return (
-    <div>
-      <DataContext.Provider
-        value={{ userData, userAuthState, siteDate, allData }}
-      >
-        <Navbar />
+    <>
+      <div className="min-h-screen">
+        <DataContext.Provider
+          value={{ userData, userAuthState, siteDate, allData }}
+        >
+          <Navbar />
 
-        {userAuthState && userAuthState?.email && (
-          <>
-            <AddTrade />
-            <AddStrategy />
-            <Profile />
-            <TopBar />
-          </>
-        )}
+          {userAuthState && userAuthState?.email && (
+            <>
+              <AddTrade />
+              <AddStrategy />
+              <Profile />
+              <TopBar />
+            </>
+          )}
 
-        {!userAuthState?.email && (
-          <>
-            <Register />
-            <Login />
-            <LandingPage />
-          </>
-        )}
-      </DataContext.Provider>
+          {!userAuthState?.email && (
+            <>
+              <Register />
+              <Login />
+              <LandingPage />
+            </>
+          )}
+        </DataContext.Provider>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

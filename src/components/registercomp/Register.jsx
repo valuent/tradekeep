@@ -107,7 +107,7 @@ function Register() {
           />
         </svg>
       </button>
-      <div className="hero min-h-screen bg-base-200 bg-opacity-50 ">
+      <div className="hero min-h-screen bg-base-200 bg-opacity-50 backdrop-blur-md ">
         <div className="hero-content flex-col sm:w-4/5 lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="overflow-visible text-5xl font-bold">
