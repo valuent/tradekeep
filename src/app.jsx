@@ -21,10 +21,9 @@ import Profile from "./components/profilecomp/Profile";
 import TopBar from "./components/topbarcomp/TopBar";
 import AddStrategy from "./components/addstrategycomp/AddStrategy";
 import AddTrade from "./components/addtradecomp/AddTrade";
-import DataTable from "./components/datatablecomp/DataTable";
+import LandingPage from "./containers/LandingPage";
+import Footer from "./components/footercomp/Footer";
 // import CheckDocSize from "./service/CheckDocSize";
-
-import SendTestData from "./service/SendTestData";
 
 function App() {
   var siteDate = DateTime.now().setZone("local");
@@ -97,9 +96,11 @@ function App() {
           <>
             <Register />
             <Login />
+            <LandingPage />
           </>
         )}
       </DataContext.Provider>
+      <Footer />
     </div>
   );
 }

@@ -88,16 +88,16 @@ function Navbar() {
         </div>
       )}
       {!userEmail?.email && (
-        <div className="join join-vertical lg:join-horizontal">
+        <div className="join join-vertical sm:join-horizontal">
           <button
-            className="btn join-item"
+            className="btn join-item border-0 bg-primary hover:bg-secondary"
             id="userStatebtn"
             onClick={openLogin}
           >
             Log In
           </button>
           <button
-            className="btn join-item"
+            className="btn join-item border-0 bg-primary hover:bg-secondary"
             id="userStatebtn"
             onClick={openRegister}
           >
