@@ -13,11 +13,11 @@ service cloud.firestore {
     // all client requests to your Firestore database will be denied until you Update
     // your rules
     match /users/{documentId} {
-      allow read, write: if isDocumentOwner(documentId)
-      
-      match /userTradeData/{document=**} {
-      	allow read, write
-    	}
+      allow read, write: if isDocumentOwner(documentId) && isAuthenticated()
+    }
+    
+    match /users/{documentId}/userTradeData/{document=**} {
+      	allow read, write: if isDocumentOwner(documentId) && isAuthenticated()
     }
     
     function isAuthenticated() {
@@ -25,7 +25,7 @@ service cloud.firestore {
     }
    
     function isDocumentOwner(documentId) {
-      return isAuthenticated() && request.auth.token.email == documentId;
+      return request.auth.token.email == documentId;
     }
   }
 }
