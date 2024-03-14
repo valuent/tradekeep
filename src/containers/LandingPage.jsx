@@ -272,7 +272,6 @@ function LandingPage() {
         It's FREE till we roll-out some of the core features like Performance
         metrics
       </motion.div>
-      
     </>
   );
 }
