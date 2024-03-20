@@ -1,4 +1,3 @@
-# React + Vite
 # TradeKeep.in
 
 This React.js application provides traders and investors with a user-friendly interface to track their trading and investment activities. It simplifies bookkeeping and facilitates informed decision-making.
