@@ -12,31 +12,29 @@ function DataTable({ sliceValue }) {
     useContext(DataContext);
   const [allObject, setAllObject] = useState();
   const [tradeInfoKey, setTradeInfoKey] = useState("");
-  const [displaySlice, setDisplaySlice] = useState(-10);
 
   const calculateROI = (totalPnl, totalInvestment) => {
     if (totalInvestment === 0) return "N/A"; // Handle division by zero
     return ((totalPnl / totalInvestment) * 100).toFixed(2) + "%"; // Calculate ROI and format it to two decimal places
   };
 
+  const processTradeData = () => {
+    let dataDocCount = Object.keys(allData);
+    let data;
+
+    for (let i = 1; i <= dataDocCount.length; i++) {
+      let docName = "tradeDoc_" + i;
+      data = Object.assign({}, data, allData[docName]);
+    }
+    let arrayOfObjects;
+
+    if (data != undefined) {
+      arrayOfObjects = Object.values(data);
+      arrayOfObjects?.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+    setAllObject(arrayOfObjects);
+  };
   useEffect(() => {
-    const processTradeData = () => {
-      let dataDocCount = Object.keys(allData);
-      let data;
-
-      for (let i = 1; i <= dataDocCount.length; i++) {
-        let docName = "tradeDoc_" + i;
-        data = Object.assign({}, data, allData[docName]);
-      }
-      let arrayOfObjects;
-
-      if (data != undefined) {
-        arrayOfObjects = Object.values(data);
-        arrayOfObjects?.sort((a, b) => new Date(a.date) - new Date(b.date));
-      }
-
-      setAllObject(arrayOfObjects);
-    };
     processTradeData();
   }, [allData]);
 
@@ -50,25 +48,18 @@ function DataTable({ sliceValue }) {
     });
   }, [allObject]);
 
-  const deleteEntry = async (entryId) => {
-    // const docRef = doc(db, "users", userAuthState.email, "userTradeData");
-    Object.keys(allData).forEach(async (key) => {
-      let docRef = doc(db, "users", userAuthState.email, "userTradeData", key);
-      await updateDoc(docRef, {
-        [entryId]: deleteField(),
-      });
-    });
-  };
-
   const getTradeInfo = (trade) => {
+    processTradeData();
     setTradeInfoKey(trade);
     document.getElementById("tradeInfoContainer").style.top = "10%";
   };
 
   const editTradeInfo = (trade) => {
+    processTradeData();
     setTradeInfoKey(trade);
     document.getElementById("editEntryContainer").style.top = "10%";
   };
+
   return (
     <div className="flex flex-col items-center justify-center ">
       {/* {tradeInfoKey && <TradeInfo />} */}

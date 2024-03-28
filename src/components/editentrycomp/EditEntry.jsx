@@ -33,51 +33,36 @@ function EditEntry({ entryData }) {
     setTradeDataObject({ [entryData.entryUid]: entryData });
   };
 
-  useEffect(() => {
-    if (document.getElementById("noteForDay")) {
-      document.getElementById("noteForDay").value = entryData.note;
-    }
-  }, [strategyTag, tradeDataObject, tradeEntryCount]);
-  useEffect(() => {
-    if (document.getElementById("brokerage")) {
-      document.getElementById("brokerage").value = entryData.charges;
-    }
-  }, [strategyTag, tradeDataObject, tradeEntryCount]);
-
-  //   useEffect(() => {
-  //     console.log(tradeDataObject);
-  //   }, [tradeDataObject]);
-
   const handleTradeBtnClick = (index) => {
     setActiveTradeButton(index);
   };
 
-  useEffect(() => {
-    if (document.getElementById("pnlInput")) {
+  const updatePnl = () => {
+    if (
+      document.getElementById("pnlInput") &&
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["pnl"]
+    ) {
       document.getElementById("pnlInput").value =
         tradeDataObject[tradeEntryCount][strategyTag]["pnl"];
-    }
-    setActiveTradeButton(null);
-  }, [strategyTag]);
-
-  useEffect(() => {
-    if (
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag].hasOwnProperty("detail")
+    } else if (
+      document.getElementById("pnlInput") &&
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["pnl"]
     ) {
+      document.getElementById("pnlInput").value = "";
+    }
+  };
+  const tradeWiseCheck = () => {
+    if (tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]) {
       setIsTradewise(1);
     } else {
       setIsTradewise(0);
     }
-  }, [strategyTag, tradeDataObject]);
-
-  useEffect(() => {
+  };
+  const updateNumberOfTrade = () => {
     if (
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"]["noOfTrade"] &&
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        "noOfTrade"
+      ] &&
       isTradewise == 1
     ) {
       setNumberOfTrades(
@@ -107,25 +92,14 @@ function EditEntry({ entryData }) {
         ),
       );
     }
-  }, [
-    isTradewise,
-    tradeDataObject,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const updateScripNameTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("tradeScripName") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "scripName"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["scripName"]
     ) {
       document.getElementById("tradeScripName").value =
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -133,28 +107,19 @@ function EditEntry({ entryData }) {
         ];
     } else if (
       document.getElementById("tradeScripName") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "scripName"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["scripName"]
     ) {
       document.getElementById("tradeScripName").value = "";
     }
-  }, [activeTradeButton, strategyTag, activeTradeTag]);
-
-  useEffect(() => {
+  };
+  const updateTradeTypeTradewise = () => {
     if (
       activeTradeButton != null &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "tradeType"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["tradeType"]
     ) {
       setTradeType(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -164,18 +129,13 @@ function EditEntry({ entryData }) {
     } else {
       setTradeType(null);
     }
-  }, [activeTradeButton, strategyTag, activeTradeTag]);
-
-  useEffect(() => {
+  };
+  const updateTradeDirectionTradewise = () => {
     if (
       activeTradeButton != null &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "direction"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["direction"]
     ) {
       setTradeDirection(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -185,19 +145,14 @@ function EditEntry({ entryData }) {
     } else {
       setTradeDirection(null);
     }
-  }, [activeTradeButton, strategyTag, activeTradeTag]);
-
-  useEffect(() => {
+  };
+  const updateTradeQtyTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("quantity") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "quantity"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["quantity"]
     ) {
       document.getElementById("quantity").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -206,35 +161,20 @@ function EditEntry({ entryData }) {
       );
     } else if (
       document.getElementById("quantity") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "quantity"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["quantity"]
     ) {
       document.getElementById("quantity").value = 0;
     }
-  }, [
-    tradeType,
-    tradeDirection,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const updateTradeEntryPriceTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("entryPrice") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "entryPrice"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["entryPrice"]
     ) {
       document.getElementById("entryPrice").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -243,35 +183,20 @@ function EditEntry({ entryData }) {
       );
     } else if (
       document.getElementById("entryPrice") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "entryPrice"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["entryPrice"]
     ) {
       document.getElementById("entryPrice").value = 0;
     }
-  }, [
-    tradeType,
-    tradeDirection,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const updateTradeExitPriceTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("exitPrice") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "exitPrice"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["exitPrice"]
     ) {
       document.getElementById("exitPrice").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -280,35 +205,20 @@ function EditEntry({ entryData }) {
       );
     } else if (
       document.getElementById("exitPrice") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "exitPrice"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["exitPrice"]
     ) {
       document.getElementById("exitPrice").value = 0;
     }
-  }, [
-    tradeType,
-    tradeDirection,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const updateTradePnlTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("tradePnlInput") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "pnl"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["pnl"]
     ) {
       document.getElementById("tradePnlInput").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -317,35 +227,20 @@ function EditEntry({ entryData }) {
       );
     } else if (
       document.getElementById("tradePnlInput") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "pnl"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["pnl"]
     ) {
       document.getElementById("tradePnlInput").value = 0;
     }
-  }, [
-    tradeType,
-    tradeDirection,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const updateTradePnlNonDirectionalTradewise = () => {
     if (
       activeTradeButton != null &&
       document.getElementById("tradePnlInputND") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "pnl"
-      ]
+      tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["pnl"]
     ) {
       document.getElementById("tradePnlInputND").value = parseInt(
         tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
@@ -354,31 +249,20 @@ function EditEntry({ entryData }) {
       );
     } else if (
       document.getElementById("tradePnlInputND") &&
-      tradeDataObject[tradeEntryCount] &&
-      tradeDataObject[tradeEntryCount][strategyTag] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"] &&
-      tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag] &&
-      !tradeDataObject[tradeEntryCount][strategyTag]["detail"][activeTradeTag][
-        "pnl"
-      ]
+      !tradeDataObject?.[tradeEntryCount]?.[strategyTag]?.["detail"]?.[
+        activeTradeTag
+      ]?.["pnl"]
     ) {
       document.getElementById("tradePnlInputND").value = 0;
     }
-  }, [
-    tradeType,
-    tradeDirection,
-    strategyTag,
-    activeTradeButton,
-    activeTradeTag,
-  ]);
-
-  useEffect(() => {
+  };
+  const calculateTradePnlTradewise = () => {
     if (
       tradeType == "Directional" &&
-      document.getElementById("quantity") &&
-      document.getElementById("entryPrice") &&
-      document.getElementById("exitPrice") &&
-      document.getElementById("tradePnlInput")
+      document.getElementById("quantity")?.value &&
+      document.getElementById("entryPrice")?.value &&
+      document.getElementById("exitPrice")?.value &&
+      document.getElementById("tradePnlInput")?.value
     ) {
       if (tradeDirection == "Long") {
         let sum =
@@ -411,30 +295,8 @@ function EditEntry({ entryData }) {
         setTradeDataObject(updatedObject);
       }
     }
-  }, [tradeType, tradeDirection, tempToRefreshPnl]);
-
-  const deleteEntry = async (entryId) => {
-    // const docRef = doc(db, "users", userAuthState.email, "userTradeData");
-    Object.keys(allData).forEach(async (key) => {
-      let docRef = doc(db, "users", userAuthState.email, "userTradeData", key);
-      await updateDoc(docRef, {
-        [entryId]: deleteField(),
-      }).then(() => {
-        setSaveTradePop(false);
-        closeEditEntry();
-      });
-    });
   };
-
-  const saveTradeDataToDb = async (entryId) => {
-    // const docRef = doc(db, "users", userAuthState.email, "userTradeData");
-    Object.keys(allData).forEach(async (key) => {
-      let docRef = doc(db, "users", userAuthState.email, "userTradeData", key);
-      await updateDoc(docRef, {
-        [entryId]: deleteField(),
-      });
-    });
-
+  const saveTradeDataToDb = async () => {
     await setDoc(
       doc(
         db,
@@ -450,38 +312,25 @@ function EditEntry({ entryData }) {
       closeEditEntry();
     });
   };
-
-  //   const checkSizeAndAddDoc = async () => {
-  //     if (userData && allData) {
-  //       let writableDoc = userData?.tradeWritableDoc;
-  //       let currentSetDocSize = JSON.stringify(allData[writableDoc]).length;
-  //       let numberOfDocs = Object.keys(allData).length;
-  //       let nextDocNumber = numberOfDocs + 1;
-  //       let nextDocName = "tradeDoc_" + nextDocNumber;
-  //       if (currentSetDocSize > 1024000) {
-  //         const userTradeDataAddDoc = await setDoc(
-  //           doc(db, "users", userAuthState?.email, "userTradeData", nextDocName),
-  //           {},
-  //         );
-
-  //         await updateDoc(doc(db, "users", userAuthState?.email), {
-  //           tradeWritableDoc: nextDocName,
-  //         });
-  //       }
-  //     }
-  //   };
-
+  const updateNoteForTheDay = () => {
+    if (document.getElementById("noteForDay")) {
+      document.getElementById("noteForDay").value = entryData.note;
+    }
+  };
+  const updateBrokerageForTheDay = () => {
+    if (document.getElementById("brokerage")) {
+      document.getElementById("brokerage").value = entryData.charges;
+    }
+  };
   const closeEditEntry = () => {
     document.getElementById("editEntryContainer").style.top = "100%";
 
     setStart(false);
-    setTradeDataObject({});
 
     setTradeEntryCount(null); //
     setActiveButton("");
     setActiveTradeButton("");
     setTempToRefreshPnl("");
-    setTradeDataObject("");
     setTradeEntryCount("");
     setStrategyTag("");
     setIsTradewise("");
@@ -489,9 +338,60 @@ function EditEntry({ entryData }) {
     setActiveTradeTag("");
     setTradeType("");
     setTradeDirection("");
+    console.log(entryData);
     setDeleteTradePop(false);
     setSaveTradePop(false);
   };
+
+  useEffect(() => {
+    updatePnl();
+    setActiveTradeButton(null);
+  }, [strategyTag]);
+
+  useEffect(() => {
+    tradeWiseCheck();
+  }, [strategyTag, tradeDataObject]);
+
+  useEffect(() => {
+    updateNumberOfTrade();
+  }, [
+    isTradewise,
+    tradeDataObject,
+    strategyTag,
+    activeTradeButton,
+    activeTradeTag,
+  ]);
+
+  useEffect(() => {
+    updateScripNameTradewise();
+    updateTradeTypeTradewise();
+    updateTradeDirectionTradewise();
+  }, [activeTradeButton, strategyTag, activeTradeTag]);
+
+  useEffect(() => {
+    updateTradeQtyTradewise();
+    updateTradeEntryPriceTradewise();
+    updateTradeExitPriceTradewise();
+    updateTradePnlTradewise();
+    updateTradePnlNonDirectionalTradewise();
+  }, [
+    tradeType,
+    tradeDirection,
+    strategyTag,
+    activeTradeButton,
+    activeTradeTag,
+  ]);
+
+  useEffect(() => {
+    calculateTradePnlTradewise();
+  }, [tradeType, tradeDirection, tempToRefreshPnl]);
+
+  useEffect(() => {
+    updateNoteForTheDay();
+    updateBrokerageForTheDay();
+    // console.log(tradeDataObject);
+  }, [strategyTag, tradeDataObject, tradeEntryCount]);
+
   return (
     <div
     // className="fixed top-20 z-50 h-full w-full  transition-all duration-100 ease-in-out "
